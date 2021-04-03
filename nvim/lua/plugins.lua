@@ -1,0 +1,56 @@
+local execute = vim.api.nvim_command
+local fn = vim.fn
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+
+if fn.empty(fn.glob(install_path)) > 0 then
+    execute('!git clone https://github.com/wbthomason/packer.nvim ' ..
+                install_path)
+    execute 'packadd packer.nvim'
+end
+
+vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile'
+
+return require('packer').startup(function(use)
+    use 'wbthomason/packer.nvim'
+
+    -- LSP 
+    use 'neovim/nvim-lspconfig'
+    use 'glepnir/lspsaga.nvim'
+
+    -- Autocomplete
+    use 'hrsh7th/nvim-compe'
+    use 'mattn/emmet-vim'
+    use 'hrsh7th/vim-vsnip'
+    use 'xabikos/vscode-javascript'
+    use 'dsznajder/vscode-es7-javascript-react-snippets'
+
+    -- Treesitter
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use 'nvim-treesitter/nvim-treesitter-refactor'
+    use 'nvim-treesitter/playground'
+    use 'p00f/nvim-ts-rainbow'
+
+    -- Explorer
+    use 'kyazdani42/nvim-tree.lua'
+
+    -- Color
+    use 'christianchiarulli/nvcode-color-schemes.vim'
+    use 'norcalli/nvim-colorizer.lua'
+
+    -- General Plugins
+    use 'windwp/nvim-autopairs'
+    use 'unblevable/quick-scope'
+    use 'liuchengxu/vim-which-key'
+    use 'sheerun/vim-polyglot'
+
+    -- MOVING AROUND
+    use 'junegunn/fzf.vim'
+    use {'junegunn/fzf', run = 'fzf#install()'}
+    use 'lambdalisue/nerdfont.vim'
+    use 'lambdalisue/fern.vim'
+    use 'lambdalisue/fern-hijack.vim'
+    use 'lambdalisue/fern-renderer-nerdfont.vim'
+    use 'lambdalisue/fern-git-status.vim'
+    use 'LumaKernel/fern-mapping-fzf.vim/'
+
+end)
