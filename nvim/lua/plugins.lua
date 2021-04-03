@@ -32,6 +32,13 @@ return require('packer').startup(function(use)
 
     -- Explorer
     use 'kyazdani42/nvim-tree.lua'
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = {
+            {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'},
+            {'nvim-telescope/telescope-fzy-native.nvim'}
+        }
+    }
 
     -- Color
     use 'christianchiarulli/nvcode-color-schemes.vim'
@@ -47,10 +54,5 @@ return require('packer').startup(function(use)
     use 'junegunn/fzf.vim'
     use {'junegunn/fzf', run = 'fzf#install()'}
     use 'lambdalisue/nerdfont.vim'
-    use 'lambdalisue/fern.vim'
-    use 'lambdalisue/fern-hijack.vim'
-    use 'lambdalisue/fern-renderer-nerdfont.vim'
-    use 'lambdalisue/fern-git-status.vim'
-    use 'LumaKernel/fern-mapping-fzf.vim/'
 
 end)

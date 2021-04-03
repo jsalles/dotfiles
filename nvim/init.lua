@@ -7,12 +7,13 @@ require('colorscheme')
 require('nv-compe')
 require('nv-emmet')
 require('nv-quickscope')
+require('nv-telescope')
+require('nv-tree')
 require('nv-treesitter')
 
 -- Whickey
--- vim.cmd('source ~/.config/nvim/vimscript/nv-whichkey/init.vim')
+vim.cmd('source ~/.config/nvim/vimscript/nv-whichkey/init.vim')
 vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
-vim.cmd('source ~/.config/nvim/vimscript/nv-fern/init.vim')
 
 -- LSP
 require('lsp/config')

@@ -1,7 +1,7 @@
 " Leader Key Maps
 
 " Timeout
-let g:which_key_timeout = 100
+set timeoutlen=100
 
 let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
 
@@ -21,7 +21,7 @@ autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
-let g:which_key_map[';'] = [ ':Dashboard'                                      , 'home screen' ]
+" let g:which_key_map[';'] = [ ':Dashboard'                                      , 'home screen' ]
 let g:which_key_map[','] = [ '<Plug>(emmet-expand-abbr)'                       , 'expand tags' ]
 let g:which_key_map['"'] = [ '<Plug>PeekupOpen'                                , 'registers' ]
 let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               , 'find current file' ]
@@ -101,7 +101,7 @@ let g:which_key_map.F = {
     \ '6' : [':set foldlevel=6'   , 'level6']
     \ }
 
-" s is for search powered by telescope
+" " s is for search powered by telescope
 let g:which_key_map.s = {
       \ 'name' : '+search' ,
       \ '.' : [':Telescope filetypes'                   , 'filetypes'],
@@ -178,8 +178,8 @@ let g:which_key_map.l = {
       \ 'x' : [':cclose'                             , 'close quickfix'],
       \ 's' : [':Telescope lsp_document_symbols'     , 'document symbols'],
       \ 'S' : [':Telescope lsp_workspace_symbols'    , 'workspace symbols'],
+      \ 'H' : [':Lspsaga signature_help'             , 'signature_help'],
       \ }
-      " \ 'H' : [':Lspsaga signature_help'             , 'signature_help'],
 
 " t is for terminal
 let g:which_key_map.t = {
