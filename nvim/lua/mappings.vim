@@ -21,3 +21,5 @@ nmap <C-b> :Buffers<CR>
 nmap <C-f> :Rg<CR>
 nmap <C-p> :GFiles<CR>
 nmap <C-c> :History<CR>
+
+nnoremap K :lua vim.lsp.buf.hover()<CR>

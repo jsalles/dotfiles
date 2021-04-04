@@ -6,12 +6,16 @@ require('colorscheme')
 -- Plugins
 require('nv-compe')
 require('nv-emmet')
+require('nv-gitsigns')
+require('nv-indent')
 require('nv-quickscope')
 require('nv-telescope')
 require('nv-tree')
 require('nv-treesitter')
 
--- Whickey
+-- Vim configs
+vim.cmd('source ~/.config/nvim/vimscript/nv-barbar/init.vim')
+vim.cmd('source ~/.config/nvim/vimscript/nv-statusline/init.vim')
 vim.cmd('source ~/.config/nvim/vimscript/nv-whichkey/init.vim')
 vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
 

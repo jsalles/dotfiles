@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
     use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'nvim-treesitter/playground'
     use 'p00f/nvim-ts-rainbow'
+    use 'windwp/nvim-ts-autotag'
 
     -- Explorer
     use 'kyazdani42/nvim-tree.lua'
@@ -40,19 +41,20 @@ return require('packer').startup(function(use)
         }
     }
 
-    -- Color
+    -- Git
+    use 'lewis6991/gitsigns.nvim'
+
+    -- Look and feel
     use 'christianchiarulli/nvcode-color-schemes.vim'
     use 'norcalli/nvim-colorizer.lua'
+    use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
+    use 'romgrk/barbar.nvim'
+    use 'kyazdani42/nvim-web-devicons'
+    use 'junegunn/limelight.vim'
 
     -- General Plugins
-    use 'windwp/nvim-autopairs'
     use 'unblevable/quick-scope'
     use 'liuchengxu/vim-which-key'
     use 'sheerun/vim-polyglot'
-
-    -- MOVING AROUND
-    use 'junegunn/fzf.vim'
-    use {'junegunn/fzf', run = 'fzf#install()'}
-    use 'lambdalisue/nerdfont.vim'
-
+    use 'voldikss/vim-floaterm'
 end)
