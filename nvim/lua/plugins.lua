@@ -51,10 +51,12 @@ return require('packer').startup(function(use)
     use 'romgrk/barbar.nvim'
     use 'kyazdani42/nvim-web-devicons'
     use 'junegunn/limelight.vim'
+    use 'windwp/nvim-autopairs'
 
     -- General Plugins
     use 'unblevable/quick-scope'
     use 'liuchengxu/vim-which-key'
     use 'sheerun/vim-polyglot'
     use 'voldikss/vim-floaterm'
+    use 'vim-test/vim-test'
 end)

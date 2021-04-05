@@ -4,6 +4,7 @@ vim.cmd('source ~/.config/nvim/general.vim')
 require('colorscheme')
 
 -- Plugins
+require('nv-autopairs')
 require('nv-compe')
 require('nv-emmet')
 require('nv-gitsigns')
