@@ -23,4 +23,7 @@ command! ResetHunk lua require 'nv-utils'.reset_hunk()
 command! ResetBuffer lua require 'nv-utils'.reset_buffer()
 command! PreviewHunk lua require 'nv-utils'.preview_hunk()
 command! BlameLine lua require 'nv-utils'.blame_line()
-command! W noa w
+command! -nargs=+ CreateWorktree lua require 'git-worktree'.create_worktree(<f-args>)
+command! -nargs=1 SwitchWorktree lua require 'git-worktree'.switch_worktree(<f-args>)
+command! -nargs=1 DeleteWorktree lua require 'git-worktree'.delete_worktree(<f-args>)
+command Worktrees lua require 'telescope'.extensions.git_worktree.git_worktrees()

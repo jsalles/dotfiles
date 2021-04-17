@@ -28,6 +28,8 @@ return require('packer').startup(function(use)
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'nvim-treesitter/playground'
+
+    -- Typescript
     use 'p00f/nvim-ts-rainbow'
     use 'windwp/nvim-ts-autotag'
 
@@ -56,7 +58,10 @@ return require('packer').startup(function(use)
     -- General Plugins
     use 'unblevable/quick-scope'
     use 'liuchengxu/vim-which-key'
-    use 'sheerun/vim-polyglot'
     use 'voldikss/vim-floaterm'
     use 'vim-test/vim-test'
+    use 'airblade/vim-rooter'
+    use 'mhinz/vim-startify'
+    use 'tpope/vim-surround'
+    use 'theprimeagen/git-worktree.nvim'
 end)

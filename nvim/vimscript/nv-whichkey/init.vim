@@ -1,7 +1,7 @@
 " Leader Key Maps
 
 " Timeout
-set timeoutlen=100
+set timeoutlen=4000
 
 let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
 
@@ -30,60 +30,10 @@ let g:which_key_map['f'] = [ ':Telescope find_files'                           ,
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['m'] = [ ':MarkdownPreviewToggle'                          , 'markdown preview']
 let g:which_key_map['h'] = [ ':let @/ = ""'                                    , 'no highlight' ]
-let g:which_key_map['r'] = [ ':RnvimrToggle'                                   , 'ranger' ]
 " TODO create entire treesitter section
 let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'treesitter highlight' ]
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
-" TODO play nice with status line
-let g:which_key_map['z'] = [ 'Goyo'                                            , 'zen' ]
 
-" Group mappings
-
-" . is for emmet
-let g:which_key_map['.'] = {
-      \ 'name' : '+emmet' ,
-      \ ',' : ['<Plug>(emmet-expand-abbr)'               , 'expand abbr'],
-      \ ';' : ['<plug>(emmet-expand-word)'               , 'expand word'],
-      \ 'u' : ['<plug>(emmet-update-tag)'                , 'update tag'],
-      \ 'd' : ['<plug>(emmet-balance-tag-inward)'        , 'balance tag in'],
-      \ 'D' : ['<plug>(emmet-balance-tag-outward)'       , 'balance tag out'],
-      \ 'n' : ['<plug>(emmet-move-next)'                 , 'move next'],
-      \ 'N' : ['<plug>(emmet-move-prev)'                 , 'move prev'],
-      \ 'i' : ['<plug>(emmet-image-size)'                , 'image size'],
-      \ '/' : ['<plug>(emmet-toggle-comment)'            , 'toggle comment'],
-      \ 'j' : ['<plug>(emmet-split-join-tag)'            , 'split join tag'],
-      \ 'k' : ['<plug>(emmet-remove-tag)'                , 'remove tag'],
-      \ 'a' : ['<plug>(emmet-anchorize-url)'             , 'anchorize url'],
-      \ 'A' : ['<plug>(emmet-anchorize-summary)'         , 'anchorize summary'],
-      \ 'm' : ['<plug>(emmet-merge-lines)'               , 'merge lines'],
-      \ 'c' : ['<plug>(emmet-code-pretty)'               , 'code pretty'],
-      \ }
-
-" a is for actions
-let g:which_key_map.a = {
-      \ 'name' : '+actions' ,
-      \ 'c' : [':ColorizerToggle'        , 'colorizer'],
-      \ 'h' : [':let @/ = ""'            , 'remove search highlight'],
-      \ 'l' : [':Bracey'                 , 'start live server'],
-      \ 'L' : [':BraceyStop'             , 'stop live server'],
-      \ 'n' : [':set nonumber!'          , 'line-numbers'],
-      \ 's' : [':s/\%V\(.*\)\%V/"\1"/'   , 'surround'],
-      \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
-      \ 'v' : [':Codi'                   , 'virtual repl on'],
-      \ 'V' : [':Codi!'                  , 'virtual repl off'],
-      \ }
-
-" b is for buffer
-let g:which_key_map.b = {
-      \ 'name' : '+buffer' ,
-      \ '>' : [':BufferMoveNext'        , 'move next'],
-      \ '<' : [':BufferMovePrevious'    , 'move prev'],
-      \ 'b' : [':BufferPick'            , 'pick buffer'],
-      \ 'd' : [':Bdelete'               , 'delete-buffer'],
-      \ 'n' : ['bnext'                  , 'next-buffer'],
-      \ 'p' : ['bprevious'              , 'previous-buffer'],
-      \ '?' : ['Buffers'                , 'fzf-buffer'],
-      \ }
 
 
 " F is for fold
@@ -142,6 +92,7 @@ let g:which_key_map.g = {
       \ 's' : [':StageHunk'                        , 'stage hunk'],
       \ 'S' : [':Gstatus'                          , 'status'],
       \ 'u' : [':UndoStageHunk'                    , 'undo stage hunk'],
+      \ 'w' : [':Worktrees'                        , 'list git worktrees'],
       \ }
 
 " G is for gist

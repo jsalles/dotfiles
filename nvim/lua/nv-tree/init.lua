@@ -33,3 +33,8 @@ vim.g.nvim_tree_bindings = {
     ["-"] = tree_cb("dir_up"),
     ["q"] = tree_cb("close")
 }
+
+vim.g.nvim_tree_follow = 1 
+vim.g.nvim_tree_auto_open = 1 
+vim.g.nvim_tree_ignore = { ".git" }
+vim.g.nvim_tree_quit_on_open = 1

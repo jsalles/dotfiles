@@ -13,6 +13,7 @@ require('nv-quickscope')
 require('nv-telescope')
 require('nv-tree')
 require('nv-treesitter')
+require('nv-worktree')
 
 -- Vim configs
 vim.cmd('source ~/.config/nvim/vimscript/nv-barbar/init.vim')
@@ -22,6 +23,7 @@ vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
 
 -- LSP
 require('lsp/config')
+require('lsp/css')
 require('lsp/efm')
 require('lsp/tsserver')
 require('lsp/graphql')
