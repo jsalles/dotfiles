@@ -23,6 +23,7 @@ vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
 
 -- LSP
 require('lsp/config')
+require('lsp/cpp')
 require('lsp/css')
 require('lsp/efm')
 require('lsp/tsserver')
