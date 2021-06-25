@@ -92,7 +92,6 @@ let g:which_key_map.g = {
       \ 's' : [':StageHunk'                        , 'stage hunk'],
       \ 'S' : [':Gstatus'                          , 'status'],
       \ 'u' : [':UndoStageHunk'                    , 'undo stage hunk'],
-      \ 'w' : [':Worktrees'                        , 'list git worktrees'],
       \ }
 
 " G is for gist

@@ -16,6 +16,7 @@ return require('packer').startup(function(use)
     -- LSP 
     use 'neovim/nvim-lspconfig'
     use 'glepnir/lspsaga.nvim'
+    use 'kabouzeid/nvim-lspinstall'
 
     -- Autocomplete
     use 'hrsh7th/nvim-compe'
@@ -45,12 +46,15 @@ return require('packer').startup(function(use)
 
     -- Git
     use 'lewis6991/gitsigns.nvim'
+    use 'sindrets/diffview.nvim'
 
     -- Look and feel
+    use 'folke/tokyonight.nvim'
     use 'christianchiarulli/nvcode-color-schemes.vim'
     use 'norcalli/nvim-colorizer.lua'
     use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
-    use 'romgrk/barbar.nvim'
+    use 'akinsho/nvim-bufferline.lua'
+    -- use 'romgrk/barbar.nvim'
     use 'kyazdani42/nvim-web-devicons'
     use 'junegunn/limelight.vim'
     use 'windwp/nvim-autopairs'
@@ -60,8 +64,11 @@ return require('packer').startup(function(use)
     use 'liuchengxu/vim-which-key'
     use 'voldikss/vim-floaterm'
     use 'vim-test/vim-test'
-    use 'airblade/vim-rooter'
+    -- use 'airblade/vim-rooter'
+    use 'ahmedkhalf/lsp-rooter.nvim'
     use 'mhinz/vim-startify'
     use 'tpope/vim-surround'
-    use 'theprimeagen/git-worktree.nvim'
+    use 'famiu/nvim-reload'
+    use 'folke/lsp-trouble.nvim'
+    use 'sbdchd/neoformat'
 end)
