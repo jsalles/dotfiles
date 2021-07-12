@@ -8,8 +8,8 @@ require('telescope').setup {
         file_sorter = require('telescope.sorters').get_fzy_sorter,
         prompt_prefix = ' 🔍 ',
         color_devicons = true,
+        layout_config = {prompt_position = "top"},
 
-        prompt_position = "top",
         sorting_strategy = "ascending",
 
         file_previewer = require('telescope.previewers').vim_buffer_cat.new,
