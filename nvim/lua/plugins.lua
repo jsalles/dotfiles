@@ -188,4 +188,5 @@ return require("packer").startup(function(use)
 		end,
 	})
 	use("tpope/vim-surround")
+	use("b3nj5m1n/kommentary")
 end)
