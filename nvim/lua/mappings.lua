@@ -32,6 +32,17 @@ util.nnoremap("<A-k>", ":m .-2<CR>==")
 util.vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
 util.inoremap("<A-k>", "<Esc>:m .-2<CR>==gi")
 
+-- Theprimagen remaps
+-- Standard behavior
+util.nnoremap("Y", "y$")
+
+-- Keeping it centered
+util.nnoremap("J", "mzJ`z")
+
+-- Undo break points
+util.inoremap(",", "',<C-g>u'", { expr = true })
+util.inoremap(".", "'.<C-g>u'", { expr = true })
+
 -- Switch buffers with tab
 util.nnoremap("<tab>", ":bnext<cr>")
 util.nnoremap("<S-tab>", ":bprevious<cr>")
@@ -97,10 +108,10 @@ local leader = {
 		["s"] = { "<C-W>s", "split-window-below" },
 		["v"] = { "<C-W>v", "split-window-right" },
 	},
-	c = {
+	--[[ c = {
 		v = { "<cmd>Vista!!<CR>", "Vista" },
 		o = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
-	},
+	}, ]]
 	b = {
 		name = "+buffer",
 		["b"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
@@ -108,8 +119,14 @@ local leader = {
 		["["] = { "<cmd>:BufferLineCyclePrev<CR>", "Previous Buffer" },
 		["n"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
 		["]"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
-		["d"] = { "<cmd>:bd<CR>", "Delete Buffer" },
 		["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" },
+		-- ["d"] = { "<cmd>:bd<CR>", "Delete Buffer" },
+		["d"] = {
+			name = "delete",
+			["h"] = { "<cmd>:BDelete hidden<CR>", "Delete Hidden" },
+			["a"] = { "<cmd>:BDelete all<CR>", "Delete all" },
+			["d"] = { "<cmd>:BDelete this<CR>", "Delete this" },
+		},
 	},
 	g = {
 		name = "+git",
@@ -211,6 +228,7 @@ local leader = {
 	},
 	["/"] = { "<cmd>Telescope live_grep<cr>", "Search" },
 	[":"] = { "<cmd>Telescope command_history<cr>", "Command History" },
+	l = { ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><C-l>", "Reload screen" },
 	x = {
 		name = "+errors",
 		x = { "<cmd>TroubleToggle<cr>", "Trouble" },

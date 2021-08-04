@@ -49,4 +49,3 @@ vim.cmd([[
   ]])
 
 vim.cmd("au TextYankPost * lua vim.highlight.on_yank {}")
-

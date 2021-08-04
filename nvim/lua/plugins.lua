@@ -27,7 +27,7 @@ return require("packer").startup(function(use)
 			require("config.lsp")
 		end,
 		requires = {
-			"kabouzeid/nvim-lspinstall",
+			{ "jsalles/nvim-lspinstall", branch = "add-stylelint-lsp" },
 			"jose-elias-alvarez/nvim-lsp-ts-utils",
 			"jose-elias-alvarez/null-ls.nvim",
 			"folke/lua-dev.nvim",
@@ -87,6 +87,7 @@ return require("packer").startup(function(use)
 	})
 	use({
 		"nvim-telescope/telescope.nvim",
+		branch = "async_v2",
 		opt = true,
 		config = function()
 			require("config.telescope")
@@ -95,7 +96,7 @@ return require("packer").startup(function(use)
 		wants = { "plenary.nvim", "popup.nvim", "telescope-fzy-native.nvim" },
 		requires = {
 			{ "nvim-lua/popup.nvim" },
-			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-lua/plenary.nvim", branch = "async_jobs_v2" },
 			{ "nvim-telescope/telescope-fzy-native.nvim" },
 		},
 	})
@@ -131,7 +132,12 @@ return require("packer").startup(function(use)
 	})
 	use("folke/tokyonight.nvim")
 	use("christianchiarulli/nvcode-color-schemes.vim")
-	use("norcalli/nvim-colorizer.lua")
+	use({
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	})
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
@@ -189,4 +195,5 @@ return require("packer").startup(function(use)
 	})
 	use("tpope/vim-surround")
 	use("b3nj5m1n/kommentary")
+	use("kazhala/close-buffers.nvim")
 end)
