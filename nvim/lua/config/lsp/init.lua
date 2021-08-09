@@ -83,7 +83,7 @@ local installer = require("lspinstall")
 installer.setup()
 
 local extendedConfigs = {
-	lua = { library = { types = true, plugins = true } },
+	lua = require("lua-dev").setup({ library = { types = true, plugins = true } }),
 	efm = require("config.lsp.efm").config,
 }
 

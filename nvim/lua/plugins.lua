@@ -87,7 +87,6 @@ return require("packer").startup(function(use)
 	})
 	use({
 		"nvim-telescope/telescope.nvim",
-		branch = "async_v2",
 		opt = true,
 		config = function()
 			require("config.telescope")
@@ -96,7 +95,7 @@ return require("packer").startup(function(use)
 		wants = { "plenary.nvim", "popup.nvim", "telescope-fzy-native.nvim" },
 		requires = {
 			{ "nvim-lua/popup.nvim" },
-			{ "nvim-lua/plenary.nvim", branch = "async_jobs_v2" },
+			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-telescope/telescope-fzy-native.nvim" },
 		},
 	})
