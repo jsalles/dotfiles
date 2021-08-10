@@ -1,4 +1,4 @@
 -- require "util"
-require "options"
-require "plugins"
-require "colorscheme"
+require("options")
+require("plugins")
+require("colorscheme")

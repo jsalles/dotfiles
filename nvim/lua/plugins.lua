@@ -195,4 +195,11 @@ return require("packer").startup(function(use)
 	use("tpope/vim-surround")
 	use("b3nj5m1n/kommentary")
 	use("kazhala/close-buffers.nvim")
+	use({
+		"ggandor/lightspeed.nvim",
+		event = "BufReadPost",
+		config = function()
+			require("config.lightspeed")
+		end,
+	})
 end)
