@@ -9,10 +9,10 @@ vim.o.confirm = true
 vim.o.cursorline = true
 vim.o.guifont = "FireCode Nerd Font:h12"
 
-vim.o.expandtab = true -- Tabs are spaces
+-- vim.o.expandtab = true -- Tabs are spaces
 vim.o.tabstop = indent
 vim.o.softtabstop = indent
-vim.o.smartindent = true
+-- vim.o.smartindent = false
 vim.o.shiftwidth = indent
 
 vim.o.number = true

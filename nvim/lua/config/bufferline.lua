@@ -1,7 +1,7 @@
 require('bufferline').setup {
   options = {
     numbers = "ordinal",
-    mappings = true,
+    -- mappings = true,
     diagnostics = "nvim_lsp",
     offsets = {{filetype = "NvimTree", text = "File Explorer", text_align = "center"}},
     show_buffer_icons = true, -- disable filetype icons for bufers

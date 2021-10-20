@@ -1,5 +1,3 @@
-local lspconfig = require("lspconfig")
-
 if vim.lsp.setup then
 	vim.lsp.setup({
 		floating_preview = {
@@ -54,7 +52,7 @@ end
 local function on_attach(client, bufnr)
 	require("config.lsp.formatting").setup(client, bufnr)
 	require("config.lsp.keys").setup(client, bufnr)
-	require("config.lsp.completion").setup(client, bufnr)
+	-- require("config.lsp.completion").setup(client, bufnr)
 	require("config.lsp.highlighting").setup(client)
 
 	-- TypeScript specific stuff
@@ -69,29 +67,18 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 	properties = { "documentation", "detail", "additionalTextEdits" },
 }
 
-local stylelintConfig = require("lspinstall/util").extract_config("stylelint_lsp")
-stylelintConfig.default_config.cmd[1] = "./node_modules/.bin/stylelint-lsp"
-require("lspinstall/servers").stylelint = vim.tbl_extend("error", stylelintConfig, {
-	install_script = [[
-  ! test -f package.json && npm init -y --scope=lspinstall || true
-  npm install stylelint-lsp
-  ]],
-})
-
 require("null-ls").setup({ on_attach = on_attach, capabilities = capabilities })
-local installer = require("lspinstall")
-installer.setup()
+local lsp_installer = require("nvim-lsp-installer")
 
 local extendedConfigs = {
-	lua = require("lua-dev").setup({ library = { types = true, plugins = true } }),
 	efm = require("config.lsp.efm").config,
 }
 
-local servers = installer.installed_servers()
-for _, server in pairs(servers) do
-	local config = extendedConfigs[server] or {}
-	lspconfig[server].setup(vim.tbl_deep_extend("force", {
+lsp_installer.on_server_ready(function(server)
+	local config = extendedConfigs[server.name] or {}
+	server:setup(vim.tbl_deep_extend("force", {
 		on_attach = on_attach,
-		capabilities = capabilities,
+		capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
 	}, config))
-end
+	vim.cmd([[ do User LspAttachBuffers ]])
+end)

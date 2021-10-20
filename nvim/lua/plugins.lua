@@ -20,23 +20,70 @@ return require("packer").startup(function(use)
 		wants = {
 			"nvim-lsp-ts-utils",
 			"null-ls.nvim",
-			"lua-dev.nvim",
-			"nvim-lspinstall",
+			"nvim-lsp-installer",
 		},
 		config = function()
 			require("config.lsp")
 		end,
 		requires = {
-			{ "jsalles/nvim-lspinstall", branch = "add-stylelint-lsp" },
 			"jose-elias-alvarez/nvim-lsp-ts-utils",
 			"jose-elias-alvarez/null-ls.nvim",
-			"folke/lua-dev.nvim",
+			"williamboman/nvim-lsp-installer",
+			"hrsh7th/nvim-cmp",
 			-- {'glepnir/lspsaga.nvim', event = "BufReadPre"}
 		},
 	})
 
+	use({
+		"thibthib18/ros-nvim",
+		config = function()
+			require("ros-nvim").setup({
+				catkin_ws_path = "~/catkin_ws",
+			})
+		end,
+	})
 	-- Autocomplete
 	use({
+		"hrsh7th/nvim-cmp",
+		config = function()
+			local cmp = require("cmp")
+			cmp.setup({
+				snippet = {
+					expand = function(args)
+						vim.fn["vsnip#anonymous"](args.body)
+					end,
+				},
+				sources = {
+					{ name = "nvim_lsp" },
+					{ name = "buffer" },
+					{ name = "vsnip" },
+					{ name = "path" },
+				},
+				mapping = {
+					["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<CR>"] = cmp.mapping.confirm({
+						behavior = cmp.ConfirmBehavior.Replace,
+						select = true,
+					}),
+				},
+			})
+		end,
+		requires = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-vsnip",
+			"hrsh7th/cmp-path",
+			"hrsh7th/vim-vsnip",
+			{
+				"windwp/nvim-autopairs",
+				config = function()
+					require("config.autopairs")
+				end,
+			},
+		},
+	})
+	--[[ use({
 		"hrsh7th/nvim-compe",
 		event = "Insertenter",
 		opt = true,
@@ -51,8 +98,8 @@ return require("packer").startup(function(use)
 				end,
 			},
 		},
-	})
-	use({
+	}) ]]
+	--[[ use({
 		"mattn/emmet-vim",
 		opt = true,
 		config = function()
@@ -62,6 +109,7 @@ return require("packer").startup(function(use)
 	use("hrsh7th/vim-vsnip")
 	use("xabikos/vscode-javascript")
 	use("dsznajder/vscode-es7-javascript-react-snippets")
+ ]]
 
 	-- Treesitter
 	use({
@@ -178,14 +226,14 @@ return require("packer").startup(function(use)
 		end,
 	})
 	use("voldikss/vim-floaterm")
-	use({
+	--[[ use({
 		"rcarriga/vim-ultest",
 		requires = { "vim-test/vim-test" },
 		run = ":UpdateRemotePlugins",
 		config = function()
 			require("config.test")
 		end,
-	})
+	}) ]]
 	use({
 		"ahmedkhalf/lsp-rooter.nvim",
 		config = function()
