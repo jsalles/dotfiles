@@ -1,4 +1,6 @@
--- require "util"
+require("util")
 require("options")
-require("plugins")
-require("colorscheme")
+
+vim.defer_fn(function()
+	require("plugins")
+end, 0)

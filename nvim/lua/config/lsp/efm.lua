@@ -33,7 +33,7 @@ M.config = {
 	settings = {
 		rootMarkers = { "package.json", ".git" },
 		languages = {
-			lua = { stylua, selene },
+			--[[ lua = { stylua, selene },
 			typescript = eslintPrettier,
 			javascript = eslintPrettier,
 			typescriptreact = eslintPrettier,
@@ -43,10 +43,10 @@ M.config = {
 			yaml = { prettier },
 			json = { prettier },
 			html = { prettier },
-			--[[ less = { prettier },
+			less = { prettier },
 			scss = { prettier },
-			css = { prettier }, ]]
-			markdown = { prettier, markdownlint },
+			css = { prettier },
+			markdown = { prettier, markdownlint }, ]]
 		},
 	},
 }

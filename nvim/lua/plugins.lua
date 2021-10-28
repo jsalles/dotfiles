@@ -1,16 +1,19 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local packer = require("util.packer")
 
-if fn.empty(fn.glob(install_path)) > 0 then
-	execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-	execute("packadd packer.nvim")
-end
+local config = {
+	profile = {
+		enable = true,
+		threshold = 0, -- the amount in ms that a plugin load time must be over for it to be included in the profile
+	},
+	display = {
+		open_fn = function()
+			return require("packer.util").float({ border = "single" })
+		end,
+	},
+}
 
-vim.cmd("autocmd BufWritePost plugins.lua PackerCompile")
-
-return require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
+local function plugins(use)
+	use({ "wbthomason/packer.nvim", opt = true })
 
 	-- LSP
 	use({
@@ -18,19 +21,22 @@ return require("packer").startup(function(use)
 		opt = true,
 		event = "BufReadPre",
 		wants = {
+			-- "workspace.nvim",
 			"nvim-lsp-ts-utils",
 			"null-ls.nvim",
+			"lua-dev.nvim",
+			"cmp-nvim-lsp",
 			"nvim-lsp-installer",
 		},
 		config = function()
 			require("config.lsp")
 		end,
 		requires = {
+			-- "folke/workspace.nvim",
 			"jose-elias-alvarez/nvim-lsp-ts-utils",
 			"jose-elias-alvarez/null-ls.nvim",
+			"folke/lua-dev.nvim",
 			"williamboman/nvim-lsp-installer",
-			"hrsh7th/nvim-cmp",
-			-- {'glepnir/lspsaga.nvim', event = "BufReadPre"}
 		},
 	})
 
@@ -83,33 +89,6 @@ return require("packer").startup(function(use)
 			},
 		},
 	})
-	--[[ use({
-		"hrsh7th/nvim-compe",
-		event = "Insertenter",
-		opt = true,
-		config = function()
-			require("config.compe")
-		end,
-		requires = {
-			{
-				"windwp/nvim-autopairs",
-				config = function()
-					require("config.autopairs")
-				end,
-			},
-		},
-	}) ]]
-	--[[ use({
-		"mattn/emmet-vim",
-		opt = true,
-		config = function()
-			require("config.emmet")
-		end,
-	})
-	use("hrsh7th/vim-vsnip")
-	use("xabikos/vscode-javascript")
-	use("dsznajder/vscode-es7-javascript-react-snippets")
- ]]
 
 	-- Treesitter
 	use({
@@ -177,7 +156,12 @@ return require("packer").startup(function(use)
 			vim.g.Illuminate_delay = 1000
 		end,
 	})
-	use("folke/tokyonight.nvim")
+	use({
+		"folke/tokyonight.nvim",
+		config = function()
+			require("config.theme")
+		end,
+	})
 	use("christianchiarulli/nvcode-color-schemes.vim")
 	use({
 		"norcalli/nvim-colorizer.lua",
@@ -250,4 +234,6 @@ return require("packer").startup(function(use)
 			require("config.lightspeed")
 		end,
 	})
-end)
+end
+
+return packer.setup(config, plugins)

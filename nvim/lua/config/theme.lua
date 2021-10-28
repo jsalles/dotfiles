@@ -41,4 +41,5 @@ vim.g.tokyonight_dark_float = true
 vim.g.tokyonight_colors = {}
 -- vim.g.tokyonight_colors = { border = "orange" }
 
-vim.cmd("colorscheme tokyonight") -- Put your favorite colorscheme here
+-- vim.cmd("colorscheme tokyonight") -- Put your favorite colorscheme here
+require("tokyonight").colorscheme()
