@@ -61,8 +61,8 @@ local function plugins(use)
 				},
 				sources = {
 					{ name = "nvim_lsp" },
-					{ name = "buffer" },
 					{ name = "vsnip" },
+					{ name = "buffer" },
 					{ name = "path" },
 				},
 				mapping = {
@@ -72,6 +72,12 @@ local function plugins(use)
 						behavior = cmp.ConfirmBehavior.Replace,
 						select = true,
 					}),
+				},
+				formatting = {
+					format = require("config.lsp.kind").cmp_format(),
+				},
+				documentation = {
+					border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 				},
 			})
 		end,
@@ -195,7 +201,7 @@ local function plugins(use)
 	-- Terminal
 	use({
 		"akinsho/nvim-toggleterm.lua",
-		keys = "<M-`>",
+		keys = [[<c-\>]],
 		config = function()
 			require("config.terminal")
 		end,
