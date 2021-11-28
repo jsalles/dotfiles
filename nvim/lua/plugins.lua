@@ -103,13 +103,14 @@ local function plugins(use)
 		config = function()
 			require("config.treesitter")
 		end,
+		requires = {
+			{ "p00f/nvim-ts-rainbow" },
+			{ "windwp/nvim-ts-autotag" },
+			{ "nvim-treesitter/nvim-treesitter-refactor" },
+			{ "nvim-treesitter/playground" },
+			{ "nvim-treesitter/nvim-treesitter-textobjects" },
+		},
 	})
-	use("nvim-treesitter/nvim-treesitter-refactor")
-	use("nvim-treesitter/playground")
-
-	-- Typescript
-	use("p00f/nvim-ts-rainbow")
-	use("windwp/nvim-ts-autotag")
 
 	-- Explorer
 	use({
@@ -143,7 +144,7 @@ local function plugins(use)
 			require("config.gitsigns")
 		end,
 	})
-	use("sindrets/diffview.nvim")
+	use({ "sindrets/diffview.nvim", wants = "plenary.nvim", requires = "nvim-lua/plenary.nvim" })
 	use({
 		"TimUntersberger/neogit",
 		requires = { "nvim-lua/plenary.nvim" },
