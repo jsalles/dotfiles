@@ -14,6 +14,8 @@ local config = {
 
 local function plugins(use)
 	use({ "wbthomason/packer.nvim", opt = true })
+	use({ "nvim-lua/plenary.nvim", module = "plenary" })
+	use({ "nvim-lua/popup.nvim", module = "popup" })
 
 	-- LSP
 	use({
@@ -32,7 +34,6 @@ local function plugins(use)
 			require("config.lsp")
 		end,
 		requires = {
-			-- "folke/workspace.nvim",
 			"jose-elias-alvarez/nvim-lsp-ts-utils",
 			"jose-elias-alvarez/null-ls.nvim",
 			"folke/lua-dev.nvim",
@@ -40,14 +41,6 @@ local function plugins(use)
 		},
 	})
 
-	use({
-		"thibthib18/ros-nvim",
-		config = function()
-			require("ros-nvim").setup({
-				catkin_ws_path = "~/catkin_ws",
-			})
-		end,
-	})
 	-- Autocomplete
 	use({
 		"hrsh7th/nvim-cmp",
@@ -144,7 +137,14 @@ local function plugins(use)
 			require("config.gitsigns")
 		end,
 	})
-	use({ "sindrets/diffview.nvim", wants = "plenary.nvim", requires = "nvim-lua/plenary.nvim" })
+	use({
+		"sindrets/diffview.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+		config = function()
+			require("diffview").setup({})
+		end,
+	})
 	use({
 		"TimUntersberger/neogit",
 		requires = { "nvim-lua/plenary.nvim" },
@@ -191,12 +191,26 @@ local function plugins(use)
 	})
 	use("folke/lsp-trouble.nvim")
 	use({
+		"folke/todo-comments.nvim",
+		cmd = { "TodoTrouble", "TodoTelescope" },
+		event = "BufReadPost",
+		config = function()
+			require("config.todo")
+		end,
+	})
+	use({
 		"hoob3rt/lualine.nvim",
 		event = "VimEnter",
 		config = function()
 			require("config.statusline")
 		end,
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+	})
+	use({
+		"rcarriga/nvim-notify",
+		config = function()
+			vim.notify = require("notify")
+		end,
 	})
 
 	-- Terminal

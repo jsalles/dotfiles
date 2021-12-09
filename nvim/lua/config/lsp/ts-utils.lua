@@ -10,6 +10,7 @@ return {
 			eslint_enable_diagnostics = true,
 			-- eslint_fix_current = false,
 			eslint_enable_disable_comments = true,
+			auto_inlay_hints = false,
 		})
 
 		ts.setup_client(client)
