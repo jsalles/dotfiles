@@ -18,6 +18,7 @@ local function plugins(use)
 	use({ "nvim-lua/popup.nvim", module = "popup" })
 
 	-- LSP
+	use({ "ray-x/lsp_signature.nvim" })
 	use({
 		"neovim/nvim-lspconfig",
 		opt = true,
@@ -225,20 +226,21 @@ local function plugins(use)
 	-- General Plugins
 	use({
 		"folke/which-key.nvim",
-		event = "VimEnter",
+		-- event = "VimEnter",
 		config = function()
 			require("mappings")
 		end,
 	})
 	use("voldikss/vim-floaterm")
-	--[[ use({
+	use({
 		"rcarriga/vim-ultest",
 		requires = { "vim-test/vim-test" },
+		wants = "which-key",
 		run = ":UpdateRemotePlugins",
 		config = function()
 			require("config.test")
 		end,
-	}) ]]
+	})
 	use({
 		"ahmedkhalf/lsp-rooter.nvim",
 		config = function()

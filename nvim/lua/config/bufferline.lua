@@ -1,7 +1,7 @@
 require("bufferline").setup({
 	options = {
 		show_close_icon = true,
-		diagnostics = "nvim_lsp",
+		diagnostics = "nvim_diagnostic",
 		numbers = "ordinal",
 		-- mappings = true,
 		offsets = { { filetype = "NvimTree", text = "File Explorer", text_align = "center" } },

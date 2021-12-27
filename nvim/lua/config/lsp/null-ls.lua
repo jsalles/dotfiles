@@ -9,7 +9,7 @@ function M.setup(options)
 			nls.builtins.formatting.prettierd,
 			nls.builtins.formatting.stylua,
 			-- nls.builtins.formatting.clang_format,
-			-- nls.builtins.formatting.eslint_d,
+			nls.builtins.formatting.eslint_d,
 			nls.builtins.diagnostics.shellcheck,
 			nls.builtins.diagnostics.markdownlint,
 			nls.builtins.diagnostics.selene,
