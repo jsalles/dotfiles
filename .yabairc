@@ -1,0 +1,40 @@
+# Use binary-tree layout
+yabai -m config layout bsp
+
+# Change this to change the padding
+WINDOW_PADDING=10
+
+# Padding
+yabai -m config top_padding $WINDOW_PADDING
+yabai -m config bottom_padding $WINDOW_PADDING
+yabai -m config left_padding $WINDOW_PADDING
+yabai -m config right_padding $WINDOW_PADDING
+
+# Add the window gap
+yabai -m config window_gap $WINDOW_PADDING
+
+# Auto balance the window sizes
+yabai -m config auto_balance on
+yabai -m config split_ratio 0.5
+
+# Initialize limelight
+killall limelight &>/dev/null
+limelight &>/dev/null &
+
+# Floating windows
+yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Alfred Preferences$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
+yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Spotify$" manage=off
+yabai -m rule --add app="^Logi Options$" manage=off
+yabai -m rule --add app="^Cisco" manage=off
+yabai -m rule --add app="ACME" manage=off
+
+yabai -m rule --add app="Amazon" manage=off
+
+# yabai -m rule --add app=Outlook manage=off
+
+echo "yabai configuration loaded..."
