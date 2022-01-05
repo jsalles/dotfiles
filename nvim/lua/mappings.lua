@@ -206,6 +206,12 @@ local leader = {
 			end,
 			"Line Numbers",
 		},
+		r = {
+			function()
+				util.toggle("relativenumber")
+			end,
+			"Relative Numbers",
+		},
 	},
 	["<tab>"] = {
 		name = "workspace",
