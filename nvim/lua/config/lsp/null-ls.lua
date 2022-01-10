@@ -2,21 +2,23 @@ local M = {}
 
 function M.setup(options)
 	local nls = require("null-ls")
-	nls.config({
+	local config = {
 		debounce = 150,
 		save_after_format = false,
 		sources = {
 			nls.builtins.formatting.prettierd,
 			nls.builtins.formatting.stylua,
 			-- nls.builtins.formatting.clang_format,
-			nls.builtins.formatting.eslint_d,
+			-- nls.builtins.formatting.eslint_d,
 			nls.builtins.diagnostics.shellcheck,
 			nls.builtins.diagnostics.markdownlint,
 			nls.builtins.diagnostics.selene,
 			-- nls.builtins.code_actions.gitsigns,
 		},
-	})
-	require("lspconfig")["null-ls"].setup(options)
+		on_attach = options.on_attach,
+		root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".nvim.settings.json", ".git"),
+	}
+	require("null-ls").setup(config)
 end
 
 function M.has_formatter(ft)
