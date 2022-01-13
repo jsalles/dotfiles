@@ -120,11 +120,12 @@ local function plugins(use)
 			require("config.telescope")
 		end,
 		cmd = { "Telescope" },
-		wants = { "plenary.nvim", "popup.nvim", "telescope-fzy-native.nvim" },
+		wants = { "plenary.nvim", "popup.nvim", "telescope-fzy-native.nvim", "telescope-file-browser.nvim" },
 		requires = {
 			{ "nvim-lua/popup.nvim" },
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-telescope/telescope-fzy-native.nvim" },
+			{ "nvim-telescope/telescope-file-browser.nvim" },
 		},
 	})
 
@@ -155,6 +156,7 @@ local function plugins(use)
 			require("config.neogit")
 		end,
 	})
+	use("ThePrimeagen/git-worktree.nvim")
 
 	-- Look and feel
 	use({
@@ -241,12 +243,12 @@ local function plugins(use)
 			require("config.test")
 		end,
 	})
-	use({
+	--[[ use({
 		"ahmedkhalf/lsp-rooter.nvim",
 		config = function()
 			require("lsp-rooter").setup({})
 		end,
-	})
+	}) ]]
 	use("tpope/vim-surround")
 	use("b3nj5m1n/kommentary")
 	use("kazhala/close-buffers.nvim")

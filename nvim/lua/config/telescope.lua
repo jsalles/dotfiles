@@ -46,12 +46,14 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("fzy_native")
+require("telescope").load_extension("git_worktree")
+require("telescope").load_extension("file_browser")
 
 -- Implement delta as previewer for diffs
 
 local previewers = require("telescope.previewers")
 local builtin = require("telescope.builtin")
-local conf = require("telescope.config")
+-- local conf = require("telescope.config")
 local M = {}
 
 local delta = previewers.new_termopen_previewer({

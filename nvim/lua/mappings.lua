@@ -142,6 +142,21 @@ local leader = {
 		s = { "<Cmd>Telescope git_status<CR>", "status" },
 		d = { "<cmd>DiffviewOpen<cr>", "DiffView" },
 		h = { name = "+hunk" },
+		w = {
+			name = "+Worktree",
+			l = {
+				function()
+					require("telescope").extensions.git_worktree.git_worktrees()
+				end,
+				"list",
+			},
+			c = {
+				function()
+					require("telescope").extensions.git_worktree.create_git_worktree()
+				end,
+				"create",
+			},
+		},
 	},
 	["h"] = {
 		name = "+help",
