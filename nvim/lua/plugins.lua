@@ -1,4 +1,5 @@
 local packer = require("util.packer")
+local util = require("util")
 
 local config = {
 	profile = {
@@ -46,34 +47,7 @@ local function plugins(use)
 	use({
 		"hrsh7th/nvim-cmp",
 		config = function()
-			local cmp = require("cmp")
-			cmp.setup({
-				snippet = {
-					expand = function(args)
-						vim.fn["vsnip#anonymous"](args.body)
-					end,
-				},
-				sources = {
-					{ name = "nvim_lsp" },
-					{ name = "vsnip" },
-					{ name = "buffer" },
-					{ name = "path" },
-				},
-				mapping = {
-					["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-					["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-					["<CR>"] = cmp.mapping.confirm({
-						behavior = cmp.ConfirmBehavior.Replace,
-						select = true,
-					}),
-				},
-				formatting = {
-					format = require("config.lsp.kind").cmp_format(),
-				},
-				documentation = {
-					border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-				},
-			})
+			require("config/cmp")
 		end,
 		requires = {
 			"hrsh7th/cmp-nvim-lsp",
@@ -81,6 +55,7 @@ local function plugins(use)
 			"hrsh7th/cmp-vsnip",
 			"hrsh7th/cmp-path",
 			"hrsh7th/vim-vsnip",
+			"hrsh7th/vim-vsnip-integ",
 			{
 				"windwp/nvim-autopairs",
 				config = function()

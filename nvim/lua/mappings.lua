@@ -32,6 +32,10 @@ util.nnoremap("<A-k>", ":m .-2<CR>==")
 util.vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
 util.inoremap("<A-k>", "<Esc>:m .-2<CR>==gi")
 
+-- Quicklist
+util.nnoremap("[q", ":cprev<CR>")
+util.nnoremap("]q", ":cnext<CR>")
+
 -- Theprimagen remaps
 -- Standard behavior
 util.nnoremap("Y", "y$")
@@ -257,6 +261,11 @@ local leader = {
 		d = { "<cmd>TroubleDocumentToggle<cr>", "Document Trouble" },
 		l = { "<cmd>lopen<cr>", "Open Location List" },
 		q = { "<cmd>copen<cr>", "Open Quickfix List" },
+	},
+	q = {
+		name = "quickfix",
+		q = { "<cmd>cope<CR>", "Open" },
+		c = { "<cmd>cclose<CR>", "Close" },
 	},
 	-- Z = {[[<cmd>lua require("zen-mode").reset()<cr>]], "Zen Mode"},
 	-- z = {[[<cmd>ZenMode<cr>]], "Zen Mode"},
