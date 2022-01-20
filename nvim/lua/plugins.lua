@@ -49,13 +49,20 @@ local function plugins(use)
 		config = function()
 			require("config/cmp")
 		end,
+		wants = { "LuaSnip" },
 		requires = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-vsnip",
 			"hrsh7th/cmp-path",
-			"hrsh7th/vim-vsnip",
-			"hrsh7th/vim-vsnip-integ",
+			"saadparwaiz1/cmp_luasnip",
+			{
+				"L3MON4D3/LuaSnip",
+				wants = "friendly-snippets",
+				config = function()
+					require("config.snippets")
+				end,
+			},
+			"rafamadriz/friendly-snippets",
 			{
 				"windwp/nvim-autopairs",
 				config = function()
