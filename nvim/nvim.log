@@ -1,0 +1,183 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.009  000.009: --- NVIM STARTING ---
+001.357  001.348: locale set
+002.120  000.762: inits 1
+002.149  000.030: window checked
+006.791  004.642: parsing arguments
+007.384  000.593: expanding arguments
+007.486  000.102: inits 2
+008.301  000.815: init highlight
+008.305  000.003: waiting for UI
+013.257  004.953: done waiting for UI
+013.334  000.077: init screen for UI
+013.375  000.041: init default mappings
+013.760  000.385: init default autocommands
+020.374  005.860  005.860: sourcing /Users/jvsalles/.config/nvim/init.lua
+020.430  000.810: sourcing vimrc file(s)
+028.955  000.027  000.027: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/LuaSnip/ftdetect/snippets.vim
+029.744  000.025  000.025: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/fusion.vim
+029.936  000.034  000.034: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/gdresource.vim
+030.148  000.026  000.026: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/gdscript.vim
+030.378  000.027  000.027: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/glimmer.vim
+030.626  000.033  000.033: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/glsl.vim
+030.822  000.037  000.037: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/gowork.vim
+031.015  000.042  000.042: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/graphql.vim
+031.208  000.034  000.034: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/hack.vim
+031.401  000.041  000.041: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/hcl.vim
+031.595  000.031  000.031: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/heex.vim
+031.791  000.032  000.032: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/hjson.vim
+032.056  000.043  000.043: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/json5.vim
+032.264  000.042  000.042: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/ledger.vim
+032.469  000.035  000.035: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/nix.vim
+032.654  000.037  000.037: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/prisma.vim
+032.866  000.048  000.048: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/pug.vim
+033.087  000.041  000.041: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/ql.vim
+033.285  000.045  000.045: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/query.vim
+033.483  000.038  000.038: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/surface.vim
+033.664  000.036  000.036: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/teal.vim
+033.852  000.036  000.036: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/tlaplus.vim
+034.035  000.038  000.038: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/yang.vim
+035.096  014.088  013.259: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/filetype.vim
+035.666  000.062  000.062: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/ftplugin.vim
+036.187  000.054  000.054: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/indent.vim
+037.062  000.196  000.196: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/syntax/synload.vim
+037.192  000.770  000.574: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/syntax/syntax.vim
+041.027  000.033  000.033: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/gzip.vim
+041.213  000.028  000.028: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/health.vim
+041.526  000.162  000.162: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/man.vim
+041.730  000.031  000.031: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/matchit.vim
+041.918  000.031  000.031: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/matchparen.vim
+042.108  000.036  000.036: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/netrwPlugin.vim
+046.715  000.243  000.243: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/autoload/remote/host.vim
+047.440  000.203  000.203: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/autoload/remote/define.vim
+048.142  005.541  005.095: sourcing /Users/jvsalles/.local/share/nvim/rplugin.vim
+048.165  005.899  000.358: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/rplugin.vim
+048.472  000.145  000.145: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/shada.vim
+048.685  000.046  000.046: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/spellfile.vim
+048.882  000.036  000.036: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/tarPlugin.vim
+049.081  000.031  000.031: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/tohtml.vim
+049.288  000.040  000.040: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/tutor.vim
+049.486  000.038  000.038: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/plugin/zipPlugin.vim
+149.070  099.049  099.049: sourcing /Users/jvsalles/.config/nvim/plugin/packer_compiled.lua
+150.056  009.047: loading rtp plugins
+151.343  000.065  000.065: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/close-buffers.nvim/plugin/close-buffers.vim
+154.341  001.504  001.504: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim/plugin/indent_blankline.vim
+156.541  001.656  001.656: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/kommentary/plugin/kommentary.vim
+157.748  000.242  000.242: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/lsp-trouble.nvim/plugin/trouble.vim
+159.850  000.896  000.896: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/LuaSnip/plugin/luasnip.vim
+165.044  002.581  002.581: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-cmp/plugin/cmp.lua
+165.917  000.088  000.088: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua/plugin/colorizer.vim
+167.888  000.291  000.291: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/plugin/nvim-tree-startup.lua
+169.982  001.457  001.457: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter/plugin/nvim-treesitter.vim
+171.389  000.671  000.671: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor/plugin/nvim-treesitter-refactor.vim
+175.028  003.080  003.080: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim
+177.007  001.347  001.347: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag/plugin/nvim-ts-autotag.vim
+177.981  000.410  000.410: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow/plugin/rainbow.vim
+178.637  000.056  000.056: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+179.652  000.491  000.491: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/playground/plugin/nvim-treesitter-playground.vim
+180.548  000.234  000.234: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-floaterm/plugin/floaterm.vim
+181.579  000.499  000.499: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-surround/plugin/surround.vim
+182.696  000.138  000.138: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test.vim
+183.530  001.383  001.245: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/plugin/test.vim
+184.695  000.610  000.610: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-ultest/plugin/ultest.vim
+185.321  000.033  000.033: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/which-key.nvim/plugin/which-key.vim
+185.855  018.206: loading packages
+187.731  000.802  000.802: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/cmp-buffer/after/plugin/cmp_buffer.lua
+188.656  000.604  000.604: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua
+189.334  000.372  000.372: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/cmp-path/after/plugin/cmp_path.lua
+193.791  004.140  004.140: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/cmp_luasnip/after/plugin/cmp_luasnip.lua
+193.890  002.118: loading after plugins
+193.901  000.011: inits 3
+196.120  002.220: reading ShaDa
+208.559  012.438: opening buffers
+210.067  000.185  000.185: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/base.vim
+210.784  000.098  000.098: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/racket/rackunit.vim
+211.662  000.104  000.104: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/clojure/fireplacetest.vim
+212.519  000.103  000.103: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/elm/elmtest.vim
+213.374  000.125  000.125: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/codeception.vim
+214.213  000.118  000.118: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/dusk.vim
+215.069  000.137  000.137: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/pest.vim
+216.011  000.211  000.211: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/phpunit.vim
+217.067  000.157  000.157: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/behat.vim
+217.999  000.149  000.149: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/phpspec.vim
+218.871  000.096  000.096: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/kahlan.vim
+219.417  000.071  000.071: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/php/peridot.vim
+219.982  000.104  000.104: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/java/maventest.vim
+220.493  000.093  000.093: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/java/gradletest.vim
+220.977  000.064  000.064: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/viml/themis.vim
+221.436  000.067  000.067: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/viml/vspec.vim
+221.923  000.083  000.083: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/viml/vader.vim
+222.399  000.074  000.074: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/viml/testify.vim
+222.865  000.070  000.070: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/viml/vroom.vim
+223.458  000.189  000.189: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/csharp/xunit.vim
+223.978  000.089  000.089: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/csharp/dotnettest.vim
+224.481  000.089  000.089: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/scala/sbttest.vim
+224.893  000.064  000.064: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/scala.vim
+225.404  000.099  000.099: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/scala/blooptest.vim
+225.905  000.078  000.078: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/elixir/exunit.vim
+226.375  000.068  000.068: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/elixir/espec.vim
+226.857  000.076  000.076: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/perl/prove.vim
+227.326  000.065  000.065: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/mint/minttest.vim
+227.843  000.105  000.105: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/groovy/maventest.vim
+228.350  000.095  000.095: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/groovy/gradletest.vim
+228.860  000.084  000.084: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/haskell/stacktest.vim
+229.226  000.062  000.062: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/haskell.vim
+229.917  000.112  000.112: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/ruby/rails.vim
+230.484  000.079  000.079: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/ruby/m.vim
+231.013  000.115  000.115: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/ruby/minitest.vim
+231.502  000.074  000.074: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/ruby/rspec.vim
+231.984  000.075  000.075: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/ruby/cucumber.vim
+232.478  000.086  000.086: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/ruby/testbench.vim
+233.002  000.085  000.085: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/dart/darttest.vim
+233.373  000.055  000.055: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/dart.vim
+233.882  000.088  000.088: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/dart/fluttertest.vim
+234.407  000.085  000.085: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/shell/bats.vim
+234.901  000.087  000.087: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/shell/shellspec.vim
+235.417  000.096  000.096: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/swift/swiftpm.vim
+236.008  000.075  000.075: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/crystal/crystalspec.vim
+236.611  000.096  000.096: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/ava.vim
+237.140  000.093  000.093: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/cucumberjs.vim
+237.639  000.088  000.088: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/denotest.vim
+238.165  000.105  000.105: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/intern.vim
+238.706  000.103  000.103: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/tap.vim
+239.223  000.096  000.096: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/karma.vim
+239.731  000.090  000.090: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/lab.vim
+240.245  000.099  000.099: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/mocha.vim
+240.776  000.079  000.079: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/ngtest.vim
+241.280  000.096  000.096: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/nx.vim
+241.869  000.172  000.172: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/jasmine.vim
+242.397  000.095  000.095: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/jest.vim
+242.924  000.097  000.097: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/reactscripts.vim
+243.433  000.083  000.083: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/webdriverio.vim
+243.942  000.091  000.091: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/cypress.vim
+244.459  000.091  000.091: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/javascript/vuetestutils.vim
+244.983  000.089  000.089: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/erlang/commontest.vim
+245.467  000.078  000.078: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/erlang/eunit.vim
+246.008  000.109  000.109: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/kotlin/gradletest.vim
+246.518  000.089  000.089: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/go/gotest.vim
+246.912  000.072  000.072: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/go.vim
+247.439  000.098  000.098: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/go/ginkgo.vim
+247.936  000.088  000.088: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/go/richgo.vim
+248.537  000.100  000.100: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/go/delve.vim
+249.077  000.098  000.098: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/lua/busted.vim
+249.633  000.137  000.137: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/rust/cargotest.vim
+250.138  000.085  000.085: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/behave.vim
+250.663  000.111  000.111: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/djangotest.vim
+251.194  000.110  000.110: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/pytest.vim
+251.715  000.103  000.103: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/pyunit.vim
+252.213  000.093  000.093: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/nose.vim
+252.720  000.097  000.097: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/nose2.vim
+253.247  000.103  000.103: sourcing /Users/jvsalles/.local/share/nvim/site/pack/packer/start/vim-test/autoload/test/python/mamba.vim
+253.339  037.161: BufEnter autocommands
+253.342  000.003: editing files in windows
+282.887  029.545: VimEnter autocommands
+282.891  000.004: UIEnter autocommands
+283.522  000.243  000.243: sourcing /usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/autoload/provider/clipboard.vim
+283.542  000.407: before starting main loop
+293.634  010.093: first screen update
+293.637  000.003: --- NVIM STARTED ---

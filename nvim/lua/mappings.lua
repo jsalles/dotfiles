@@ -12,6 +12,14 @@ wk.setup({
 	key_labels = { ["<leader>"] = "SPC" },
 })
 
+-- theprimeagen sessionizer
+util.nnoremap("<C-f>", function()
+	os.execute("tmux neww tmux-sessionizer")
+end)
+
+util.nnoremap("<leader>d", '"_d')
+util.vnoremap("<leader>d", '"_d')
+
 -- Move to window using the <ctrl> movement keys
 util.nmap("<left>", "<C-w>h")
 util.nmap("<down>", "<C-w>j")
