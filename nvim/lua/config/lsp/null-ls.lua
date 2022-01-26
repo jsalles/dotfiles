@@ -6,7 +6,7 @@ function M.setup(options)
 		debounce = 150,
 		save_after_format = false,
 		sources = {
-			nls.builtins.formatting.prettierd,
+			-- nls.builtins.formatting.prettierd,
 			nls.builtins.formatting.stylua,
 			-- nls.builtins.formatting.clang_format,
 			-- nls.builtins.formatting.eslint_d,

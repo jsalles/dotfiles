@@ -13,6 +13,9 @@ return {
 			auto_inlay_hints = false,
 		})
 
+		client.resolved_capabilities.document_formatting = false
+		client.resolved_capabilities.document_range_formatting = false
+
 		ts.setup_client(client)
 	end,
 }

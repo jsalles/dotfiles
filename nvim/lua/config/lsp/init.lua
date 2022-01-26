@@ -14,18 +14,16 @@ local function on_attach(client, bufnr)
 end
 
 local servers = {
-	pyright = {},
 	bashls = {},
-	dockerls = {},
 	tsserver = {},
 	cssls = {},
 	jsonls = {},
 	html = {},
-	clangd = {},
+	-- clangd = {},
 	sumneko_lua = {},
 	efm = require("config.lsp.efm").config,
 	vimls = {},
-	-- eslint = {},
+	eslint = {},
 	-- ansiblels = {},
 	-- tailwindcss = {},
 }
