@@ -42,6 +42,12 @@ local function plugins(use)
 			"williamboman/nvim-lsp-installer",
 		},
 	})
+	use({
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup({})
+		end,
+	})
 
 	-- Autocomplete
 	use({
