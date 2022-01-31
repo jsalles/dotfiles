@@ -13,4 +13,5 @@ require("lightspeed").setup({
 	labels = nil,
 	cycle_group_fwd_key = nil,
 	cycle_group_bwd_key = nil, ]]
+	repeat_ft_with_target_char = true,
 })

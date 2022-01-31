@@ -238,11 +238,17 @@ local function plugins(use)
 		end,
 	}) ]]
 	use("tpope/vim-surround")
-	use("b3nj5m1n/kommentary")
+	-- use("b3nj5m1n/kommentary")
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
 	use("kazhala/close-buffers.nvim")
 	use({
 		"ggandor/lightspeed.nvim",
-		event = "BufReadPost",
+		keys = { "s", "S", "f", "F", "t", "T" },
 		config = function()
 			require("config.lightspeed")
 		end,

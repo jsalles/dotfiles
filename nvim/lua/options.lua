@@ -45,6 +45,17 @@ vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.wrap = false -- Disable line wrap
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 vim.o.shortmess = "IToOlxfitn"
+-- formatoptions
+--                    + 't'    -- auto-wrap text using textwidth
+--                    + 'c'    -- auto-wrap comments using textwidth
+--                    + 'r'    -- auto insert comment leader on pressing enter
+--                    - 'o'    -- don't insert comment leader on pressing o
+--                    + 'q'    -- format comments with gq
+--                    - 'a'    -- don't autoformat the paragraphs (use some formatter instead)
+--                    + 'n'    -- autoformat numbered list
+--                    - '2'    -- I am a programmer and not a writer
+--                    + 'j'    -- Join comments smartly
+vim.o.formatoptions = "tcrqnj"
 
 -- don't load the plugins below
 vim.g.loaded_gzip = 1
@@ -59,17 +70,17 @@ vim.g.loaded_matchparen = 1
 
 -- Use proper syntax highlighting in code blocks
 local fences = {
-  "lua",
-  -- "vim",
-  "json",
-  "typescript",
-  "javascript",
-  "js=javascript",
-  "ts=typescript",
-  "shell=sh",
-  "python",
-  "sh",
-  "console=sh",
+	"lua",
+	-- "vim",
+	"json",
+	"typescript",
+	"javascript",
+	"js=javascript",
+	"ts=typescript",
+	"shell=sh",
+	"python",
+	"sh",
+	"console=sh",
 }
 vim.g.markdown_fenced_languages = fences
 
