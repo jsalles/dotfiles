@@ -145,6 +145,7 @@ local function plugins(use)
 		end,
 	})
 	use("ThePrimeagen/git-worktree.nvim")
+	use("tpope/vim-fugitive")
 
 	-- Look and feel
 	use({

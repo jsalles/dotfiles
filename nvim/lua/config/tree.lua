@@ -1,5 +1,5 @@
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
-vim.g.nvim_tree_quit_on_open = 1
+
 require("nvim-tree").setup({
 	view = {
 		mappings = {
@@ -35,4 +35,10 @@ require("nvim-tree").setup({
 	},
 	open_on_setup = true,
 	hijack_cursor = true,
+	hijack_unnamed_buffer_when_opening = true,
+	actions = {
+		open_file = {
+			quit_on_open = true,
+		},
+	},
 })
