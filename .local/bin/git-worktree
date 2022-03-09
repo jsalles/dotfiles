@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+branch_path=$(git branch -r | fzf | awk '{$1=$1};1')
+branch_name=${branch_path#*/}
+
+git worktree add --track -b $branch_name $branch_name remotes/$branch_path 

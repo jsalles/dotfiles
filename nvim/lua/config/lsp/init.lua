@@ -1,10 +1,9 @@
-require("config.lsp.diagnostics")
+require("config.lsp.diagnostics").setup()
 require("config.lsp.kind").setup()
 
 local function on_attach(client, bufnr)
 	require("config.lsp.formatting").setup(client, bufnr)
 	require("config.lsp.keys").setup(client, bufnr)
-	-- require("config.lsp.completion").setup(client, bufnr)
 	require("config.lsp.highlighting").setup(client)
 
 	-- TypeScript specific stuff
@@ -15,17 +14,14 @@ end
 
 local servers = {
 	bashls = {},
+	clangd = {},
 	tsserver = {},
 	cssls = {},
 	jsonls = {},
 	html = {},
-	-- clangd = {},
 	sumneko_lua = {},
-	efm = require("config.lsp.efm").config,
-	vimls = {},
 	eslint = {},
-	-- ansiblels = {},
-	-- tailwindcss = {},
+	graphql = {},
 }
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -42,5 +38,4 @@ local options = {
 }
 require("config.lsp.null-ls").setup(options)
 require("config.lsp.install").setup(servers, options)
-
 require("lsp_signature").setup()
