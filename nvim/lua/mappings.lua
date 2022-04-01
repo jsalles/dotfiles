@@ -271,9 +271,15 @@ local leader = {
 		q = { "<cmd>copen<cr>", "Open Quickfix List" },
 	},
 	q = {
-		name = "quickfix",
-		q = { "<cmd>cope<CR>", "Open" },
-		c = { "<cmd>cclose<CR>", "Close" },
+		name = "+sessions",
+		s = { require("persistence").load, "Restore" },
+		l = {
+			function()
+				require("persistence").load({ last = true })
+			end,
+			"Last",
+		},
+		d = { require("persistence").stop, "Stop" },
 	},
 	-- Z = {[[<cmd>lua require("zen-mode").reset()<cr>]], "Zen Mode"},
 	-- z = {[[<cmd>ZenMode<cr>]], "Zen Mode"},

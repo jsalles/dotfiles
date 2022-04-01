@@ -77,6 +77,13 @@ local function plugins(use)
 			},
 		},
 	})
+	use({
+		"andymass/vim-matchup",
+		event = "CursorMoved",
+		config = function()
+			vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
+		end,
+	})
 
 	-- Treesitter
 	use({
@@ -103,11 +110,11 @@ local function plugins(use)
 	})
 	use({
 		"nvim-telescope/telescope.nvim",
-		opt = true,
+		-- opt = true,
 		config = function()
 			require("config.telescope")
 		end,
-		cmd = { "Telescope" },
+		-- cmd = { "Telescope" },
 		wants = { "plenary.nvim", "popup.nvim", "telescope-fzy-native.nvim", "telescope-file-browser.nvim" },
 		requires = {
 			{ "nvim-lua/popup.nvim" },
@@ -223,27 +230,35 @@ local function plugins(use)
 		end,
 	})
 	use("voldikss/vim-floaterm")
-	use({
-		"rcarriga/vim-ultest",
-		requires = { "vim-test/vim-test" },
-		wants = "which-key",
-		run = ":UpdateRemotePlugins",
-		config = function()
-			require("config.test")
-		end,
-	})
-	--[[ use({
-		"ahmedkhalf/lsp-rooter.nvim",
-		config = function()
-			require("lsp-rooter").setup({})
-		end,
-	}) ]]
 	use("tpope/vim-surround")
-	-- use("b3nj5m1n/kommentary")
+	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use({
 		"numToStr/Comment.nvim",
 		config = function()
-			require("Comment").setup()
+			require("Comment").setup({
+				pre_hook = function(ctx)
+					-- Only calculate commentstring for tsx filetypes
+					if vim.bo.filetype == "typescriptreact" then
+						local U = require("Comment.utils")
+
+						-- Detemine whether to use linewise or blockwise commentstring
+						local type = ctx.ctype == U.ctype.line and "__default" or "__multiline"
+
+						-- Determine the location where to calculate commentstring from
+						local location = nil
+						if ctx.ctype == U.ctype.block then
+							location = require("ts_context_commentstring.utils").get_cursor_location()
+						elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+							location = require("ts_context_commentstring.utils").get_visual_start_location()
+						end
+
+						return require("ts_context_commentstring.internal").calculate_commentstring({
+							key = type,
+							location = location,
+						})
+					end
+				end,
+			})
 		end,
 	})
 	use("kazhala/close-buffers.nvim")
@@ -252,6 +267,14 @@ local function plugins(use)
 		keys = { "s", "S", "f", "F", "t", "T" },
 		config = function()
 			require("config.lightspeed")
+		end,
+	})
+	use({
+		"folke/persistence.nvim",
+		event = "BufReadPre",
+		module = "persistence",
+		config = function()
+			require("persistence").setup()
 		end,
 	})
 end

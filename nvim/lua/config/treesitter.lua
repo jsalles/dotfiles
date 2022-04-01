@@ -12,6 +12,9 @@ require("nvim-treesitter.configs").setup({
 	autotag = { enable = true },
 	rainbow = { enable = true },
 	refactor = { highlight_definitions = { enable = true } },
+	context_commentstring = {
+		enable = true,
+	},
 	incremental_selection = {
 		enable = true,
 		keymaps = {
