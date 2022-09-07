@@ -28,7 +28,7 @@ require("nvim-tree").setup({
 				{ key = "q", cb = tree_cb("close") },
 			},
 		},
-		auto_resize = true,
+		-- auto_resize = true,
 	},
 	update_focused_file = {
 		enable = true,

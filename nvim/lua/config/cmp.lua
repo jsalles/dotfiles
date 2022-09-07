@@ -24,7 +24,7 @@ cmp.setup({
 	formatting = {
 		format = require("config.lsp.kind").cmp_format(),
 	},
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-	},
+	-- documentation = {
+	-- 	border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+	-- },
 })
