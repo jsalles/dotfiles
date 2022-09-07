@@ -106,6 +106,12 @@ cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 
 -- ftdetect
 cmd([[autocmd BufRead,BufNewFile *.fish setfiletype fish]])
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.smithy" },
+	callback = function()
+		vim.cmd("setfiletype smithy")
+	end,
+})
 
 -- windows to close with "q"
 vim.cmd([[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]])

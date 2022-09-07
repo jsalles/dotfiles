@@ -269,6 +269,12 @@ local function plugins(use)
 			require("config.lightspeed")
 		end,
 	})
+	-- use({
+	-- 	"ggandor/leap.nvim",
+	-- 	config = function()
+	-- 		require("leap").set_default_keymaps()
+	-- 	end,
+	-- })
 	use({
 		"folke/persistence.nvim",
 		event = "BufReadPre",
