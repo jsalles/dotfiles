@@ -20,26 +20,25 @@ local function plugins(use)
 
 	-- LSP
 	use({ "ray-x/lsp_signature.nvim" })
+	use({ "jose-elias-alvarez/typescript.nvim", module = "typescript" })
 	use({
 		"neovim/nvim-lspconfig",
 		opt = true,
 		event = "BufReadPre",
 		wants = {
 			-- "workspace.nvim",
-			"nvim-lsp-ts-utils",
+			-- "nvim-lsp-ts-utils",
 			"null-ls.nvim",
 			"lua-dev.nvim",
 			"cmp-nvim-lsp",
-			"nvim-lsp-installer",
 		},
 		config = function()
 			require("config.lsp")
 		end,
 		requires = {
-			"jose-elias-alvarez/nvim-lsp-ts-utils",
+			-- "jose-elias-alvarez/nvim-lsp-ts-utils",
 			"jose-elias-alvarez/null-ls.nvim",
 			"folke/lua-dev.nvim",
-			"williamboman/nvim-lsp-installer",
 		},
 	})
 	use({
@@ -47,6 +46,16 @@ local function plugins(use)
 		config = function()
 			require("fidget").setup({})
 		end,
+	})
+	use({
+		"williamboman/mason.nvim",
+		module = "mason",
+		opt = true,
+	})
+	use({
+		"williamboman/mason-lspconfig.nvim",
+		module = "mason-lspconfig",
+		opt = true,
 	})
 
 	-- Autocomplete
@@ -99,6 +108,15 @@ local function plugins(use)
 			{ "nvim-treesitter/playground" },
 			{ "nvim-treesitter/nvim-treesitter-textobjects" },
 		},
+	})
+
+	-- Smooth Scrolling
+	use({
+		"karb94/neoscroll.nvim",
+		keys = { "<C-u>", "<C-d>", "gg", "G" },
+		config = function()
+			require("config.scroll")
+		end,
 	})
 
 	-- Explorer

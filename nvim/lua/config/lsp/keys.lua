@@ -57,24 +57,54 @@ function M.setup(client, bufnr)
 		},
 	}
 
+	local function filter(arr, fn)
+		if type(arr) ~= "table" then
+			return arr
+		end
+
+		local filtered = {}
+		for k, v in pairs(arr) do
+			if fn(v, k, arr) then
+				table.insert(filtered, v)
+			end
+		end
+
+		return filtered
+	end
+
+	local function filterReactDTS(value)
+		return string.match(value.filename, "react/index.d.ts") == nil
+	end
+
+	local function on_list(options)
+		-- https://github.com/typescript-language-server/typescript-language-server/issues/216
+		local items = options.items
+		if #items > 1 then
+			items = filter(items, filterReactDTS)
+		end
+
+		vim.fn.setqflist({}, " ", { title = options.title, items = items, context = options.context })
+		vim.api.nvim_command("cfirst")
+	end
+
 	local keymap_goto = {
 		name = "+goto",
 		r = { "<cmd>Telescope lsp_references<cr>", "References" },
 		R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
-		d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
+		d = { "<Cmd>lua vim.lsp.buf.definition({on_list=on_list})<CR>", "Goto Definition" },
 		dv = {
-			"<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>",
+			"<Cmd>vsplit | lua vim.lsp.buf.definition({on_list=on_list})<CR>",
 			"Goto Definition",
 		},
 		ds = {
-			"<Cmd>split | lua vim.lsp.buf.definition()<CR>",
+			"<Cmd>split | lua vim.lsp.buf.definition({on_list=on_list})<CR>",
 			"Goto Definition",
 		},
 		s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
 		I = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
 		-- I = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },
 		t = {
-			"<cmd>lua vim.lsp.buf.type_definition()<CR>",
+			"<cmd>lua vim.lsp.buf.type_definition({on_list=on_list})<CR>",
 			"Goto Type Definition",
 		},
 	}
