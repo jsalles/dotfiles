@@ -25,8 +25,13 @@ vim.o.background = "dark"
 vim.g.tokyonight_dev = true
 vim.g.tokyonight_style = "storm"
 vim.g.tokyonight_sidebars = {
-    "qf", "vista_kind", "terminal", "packer", "spectre_panel", "NeogitStatus",
-    "help"
+	"qf",
+	"vista_kind",
+	"terminal",
+	"packer",
+	"spectre_panel",
+	"NeogitStatus",
+	"help",
 }
 vim.g.tokyonight_cterm_colors = false
 vim.g.tokyonight_terminal_colors = true
@@ -43,3 +48,4 @@ vim.g.tokyonight_colors = {}
 
 -- vim.cmd("colorscheme tokyonight") -- Put your favorite colorscheme here
 require("tokyonight").colorscheme()
+-- vim.api.nvim_command("colorscheme catppuccin")
