@@ -5,8 +5,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 vim.opt.autowrite = true -- enable auto write
 vim.opt.clipboard = "unnamedplus" -- sync with system clipboard
-vim.opt.conceallevel = 2 -- Hide * markup for bold and italic
-vim.opt.concealcursor = "n" -- Hide * markup for bold and italic
+vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
+-- vim.opt.concealcursor = "n" -- Hide * markup for bold and italic
 vim.opt.confirm = true -- confirm to save changes before exiting modified buffer
 vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.expandtab = true -- Use spaces instead of tabs
@@ -111,6 +111,15 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	callback = function()
 		vim.cmd("setfiletype smithy")
 	end,
+})
+
+-- stop conceallevel on json files
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "json", "jsonc", "help "},
+  callback = function()
+    vim.wo.spell = false
+    vim.wo.conceallevel = 0
+  end
 })
 
 -- windows to close with "q"

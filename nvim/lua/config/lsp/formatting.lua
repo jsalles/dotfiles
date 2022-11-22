@@ -16,12 +16,13 @@ end
 function M.format()
   if M.autoformat then
     if vim.lsp.buf.format then
-      vim.lsp.buf.format({
-        async = true,
-        filter = function(client)
-          return client.name ~= "tsserver"
-        end,
-      })
+      -- vim.lsp.buf.format({
+      --   async = true,
+      --   filter = function(client)
+      --     return client.name ~= "tsserver"
+      --   end,
+      -- })
+      vim.lsp.buf.format()
     else
       vim.lsp.buf.formatting_sync()
     end

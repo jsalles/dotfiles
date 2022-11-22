@@ -23,7 +23,7 @@ local servers = {
 		settings = {
 			json = {
 				format = {
-					enable = true,
+					enable = false,
 				},
 				schemas = require("schemastore").json.schemas(),
 				validate = { enable = true },
@@ -86,7 +86,7 @@ capabilities.textDocument.foldingRange = {
 	lineFoldingOnly = true,
 }
 
--- require("workspace").setup()
+-- require(".neoconf.json").setup()
 require("neodev").setup()
 
 local options = {

@@ -9,7 +9,7 @@ function M.setup(options)
 			-- nls.builtins.formatting.prettierd,
 			-- nls.builtins.formatting.stylua,
 			-- nls.builtins.formatting.eslint_d,
-			-- nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
+			nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
 			nls.builtins.diagnostics.shellcheck,
 			nls.builtins.diagnostics.markdownlint,
 			-- nls.builtins.code_actions.gitsigns,
@@ -18,7 +18,7 @@ function M.setup(options)
 			}),
 		},
 		on_attach = options.on_attach,
-		root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".nvim.settings.json", "yarn.lock", ".git"),
+		root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
 	})
 end
 
