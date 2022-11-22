@@ -120,6 +120,12 @@ local function plugins(use)
 	-- 	end,
 	-- })
 
+  use({
+    "windwp/nvim-spectre",
+    module = "spectre",
+  })
+
+
 	-- Explorer
 	use({
 		"kyazdani42/nvim-tree.lua",

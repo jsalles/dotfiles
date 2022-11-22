@@ -201,7 +201,7 @@ local leader = {
 		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Goto Symbol" },
 		h = { "<cmd>Telescope command_history<cr>", "Command History" },
 		m = { "<cmd>Telescope marks<cr>", "Jump to Mark" },
-		-- r = {"<cmd>lua require('spectre').open()<CR>", "Replace (Spectre)"}
+		r = { "<cmd>lua require('spectre').open()<CR>", "Replace (Spectre)" }
 	},
 	f = {
 		name = "+file",
