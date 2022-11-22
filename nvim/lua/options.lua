@@ -1,4 +1,3 @@
-local cmd = vim.cmd
 local indent = 2
 
 vim.g.mapleader = " "
@@ -84,44 +83,3 @@ local fences = {
 }
 vim.g.markdown_fenced_languages = fences
 
-vim.cmd([[autocmd FileType markdown nnoremap gO <cmd>Toc<cr>]])
-vim.cmd([[autocmd FileType markdown setlocal spell]])
-
--- Check if we need to reload the file when it changed
-cmd("au FocusGained * :checktime")
-
--- show cursor line only in active window
-cmd([[
-  autocmd InsertLeave,WinEnter * set cursorline
-  autocmd InsertEnter,WinLeave * set nocursorline
-]])
-
--- go to last loc when opening a buffer
-cmd([[
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
-]])
-
--- Highlight on yank
-cmd("au TextYankPost * lua vim.highlight.on_yank {}")
-
--- ftdetect
-cmd([[autocmd BufRead,BufNewFile *.fish setfiletype fish]])
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.smithy" },
-	callback = function()
-		vim.cmd("setfiletype smithy")
-	end,
-})
-
--- stop conceallevel on json files
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "json", "jsonc", "help "},
-  callback = function()
-    vim.wo.spell = false
-    vim.wo.conceallevel = 0
-  end
-})
-
--- windows to close with "q"
-vim.cmd([[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]])
-vim.cmd([[autocmd FileType man nnoremap <buffer><silent> q :quit<CR>]])

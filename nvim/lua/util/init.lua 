@@ -106,15 +106,15 @@ function M.log(msg, hl, name)
 end
 
 function M.warn(msg, name)
-  M.log(msg, "DiagnosticWarn", name)
+  vim.notify(msg, vim.log.levels.WARN, { title = name or "init.lua" })
 end
 
 function M.error(msg, name)
-  M.log(msg, "DiagnosticError", name)
+  vim.notify(msg, vim.log.levels.ERROR, { title = name or "init.lua" })
 end
 
 function M.info(msg, name)
-  M.log(msg, "DiagnosticInfo", name)
+  vim.notify(msg, vim.log.levels.INFO, { title = name or "init.lua" })
 end
 
 function M.toggle(option, silent)
@@ -143,7 +143,7 @@ function M.float_terminal(cmd)
     row = vpad,
     col = hpad,
     style = "minimal",
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    border = "rounded"
   })
   vim.fn.termopen(cmd)
   local autocmd = {
