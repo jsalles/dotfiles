@@ -19,9 +19,43 @@ local servers = {
 	bashls = {},
 	clangd = {},
 	cssls = {},
-	jsonls = {},
+	jsonls = {
+		settings = {
+			json = {
+				format = {
+					enable = true,
+				},
+				schemas = require("schemastore").json.schemas(),
+				validate = { enable = true },
+			},
+		},
+	},
 	html = {},
-	sumneko_lua = {},
+	sumneko_lua = {
+		settings = {
+			Lua = {
+				workspace = {
+					checkThirdParty = false,
+				},
+				completion = {
+					workspaceWord = true,
+				},
+				misc = {
+					parameters = {
+						"--log-level=trace",
+					},
+				},
+				format = {
+					enable = false,
+					defaultConfig = {
+						indent_style = "space",
+						indent_size = "2",
+						continuation_indent_size = "2",
+					},
+				},
+			},
+		},
+	},
 	eslint = {
 		enable = true,
 		format = { enable = true },
