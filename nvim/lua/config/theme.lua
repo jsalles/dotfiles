@@ -1,51 +1,60 @@
--- vim.g.material_style = "palenight"
--- vim.g.material_italic_comments = 1
--- vim.g.material_italic_keywords = 1
--- vim.g.material_italic_functions = 1
--- vim.g.material_lsp_underline = 1
---
--- vim.g.sonokai_style = "atlantis"
--- vim.g.sonokai_enable_italic = 1
--- vim.g.sonokai_disable_italic_comment = 1
--- vim.g.sonokai_diagnostic_virtual_text = "colored"
---
--- vim.g.edge_style = "neon"
--- vim.g.edge_enable_italic = 1
--- vim.g.edge_disable_italic_comment = 0
--- vim.g.edge_transparent_background = 0
---
--- vim.g.embark_terminal_italics = 1
---
--- vim.g.nightflyTransparent = 0
---
--- vim.g.nvcode_termcolors = 256
---
--- vim.o.background = "dark"
---
--- vim.g.tokyonight_dev = true
--- vim.g.tokyonight_style = "storm"
--- vim.g.tokyonight_sidebars = {
--- 	"qf",
--- 	"vista_kind",
--- 	"terminal",
--- 	"packer",
--- 	"spectre_panel",
--- 	"NeogitStatus",
--- 	"help",
--- }
--- vim.g.tokyonight_cterm_colors = false
--- vim.g.tokyonight_terminal_colors = true
--- vim.g.tokyonight_italic_comments = true
--- vim.g.tokyonight_italic_keywords = true
--- vim.g.tokyonight_italic_functions = false
--- vim.g.tokyonight_italic_variables = false
--- vim.g.tokyonight_transparent = false
--- vim.g.tokyonight_hide_inactive_statusline = true
--- vim.g.tokyonight_dark_sidebar = true
--- vim.g.tokyonight_dark_float = true
--- vim.g.tokyonight_colors = {}
--- vim.g.tokyonight_colors = { border = "orange" }
+-- vim.api.nvim_command("colorscheme catppuccin")
 
--- vim.cmd("colorscheme tokyonight") -- Put your favorite colorscheme here
--- require("tokyonight").colorscheme()
-vim.api.nvim_command("colorscheme catppuccin-frappe")
+-- vim.o.background = "dark"
+local tokyonight = require("tokyonight")
+tokyonight.setup({
+  style = "moon",
+  -- transparent = true,
+  -- hide_inactive_statusline = false,
+  sidebars = {
+    "qf",
+    "vista_kind",
+    "terminal",
+    -- "packer",
+    "spectre_panel",
+    "NeogitStatus",
+    -- "help",
+    "startuptime",
+    "Outline",
+  },
+  transparent = false,
+  styles = {},
+  on_colors = function() end,
+  on_highlights = function(hl, c)
+    -- make the current line cursor orange
+    hl.CursorLineNr = { fg = c.orange, bold = true }
+
+    if true then
+      -- borderless telescope
+      local prompt = "#2d3149"
+      hl.TelescopeNormal = {
+        bg = c.bg_dark,
+        fg = c.fg_dark,
+      }
+      hl.TelescopeBorder = {
+        bg = c.bg_dark,
+        fg = c.bg_dark,
+      }
+      hl.TelescopePromptNormal = {
+        bg = prompt,
+      }
+      hl.TelescopePromptBorder = {
+        bg = prompt,
+        fg = prompt,
+      }
+      hl.TelescopePromptTitle = {
+        bg = c.fg_gutter,
+        fg = c.orange,
+      }
+      hl.TelescopePreviewTitle = {
+        bg = c.bg_dark,
+        fg = c.bg_dark,
+      }
+      hl.TelescopeResultsTitle = {
+        bg = c.bg_dark,
+        fg = c.bg_dark,
+      }
+    end
+  end,
+})
+vim.api.nvim_command("colorscheme tokyonight")
