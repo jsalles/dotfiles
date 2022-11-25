@@ -219,7 +219,7 @@ local function plugins(use)
   })
   use({
     "akinsho/nvim-bufferline.lua",
-    tag = "v2.*",
+    -- tag = "v2.*",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
       require("config.bufferline")
@@ -252,7 +252,7 @@ local function plugins(use)
   -- Terminal
   use({
     "akinsho/nvim-toggleterm.lua",
-    tag = "v2.*",
+    -- tag = "v2.*",
     keys = [[<c-\>]],
     config = function()
       require("config.terminal")
@@ -271,7 +271,7 @@ local function plugins(use)
   -- use("tpope/vim-surround")
   use({
     "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    -- tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
       require("nvim-surround").setup({
         -- Configuration here, or leave empty to use defaults
