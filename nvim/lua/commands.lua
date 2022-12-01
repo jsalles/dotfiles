@@ -35,15 +35,15 @@ vim.cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 -- ftdetect
 vim.cmd([[autocmd BufRead,BufNewFile *.fish setfiletype fish]])
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.smithy" },
-	callback = function()
-		vim.cmd("setfiletype smithy")
-	end,
+  pattern = { "*.smithy" },
+  callback = function()
+    vim.cmd("setfiletype smithy")
+  end,
 })
 
 -- stop conceallevel on json files
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "json", "jsonc", "help "},
+  pattern = { "json", "jsonc", "help " },
   callback = function()
     vim.wo.spell = false
     vim.wo.conceallevel = 0
@@ -54,3 +54,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.cmd([[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]])
 vim.cmd([[autocmd FileType man nnoremap <buffer><silent> q :quit<CR>]])
 
+-- navigate harpoon with numbers
+vim.cmd([[autocmd FileType harpoon nnoremap <buffer><silent> 1 <cmd>lua require("harpoon.ui").nav_file(1)<CR>]])
+vim.cmd([[autocmd FileType harpoon nnoremap <buffer><silent> 2 <cmd>lua require("harpoon.ui").nav_file(2)<CR>]])
+vim.cmd([[autocmd FileType harpoon nnoremap <buffer><silent> 3 <cmd>lua require("harpoon.ui").nav_file(3)<CR>]])
+vim.cmd([[autocmd FileType harpoon nnoremap <buffer><silent> 4 <cmd>lua require("harpoon.ui").nav_file(4)<CR>]])
