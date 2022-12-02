@@ -14,8 +14,8 @@ local config = {
 }
 
 local function plugins(use)
-  use({ "wbthomason/packer.nvim", opt = true })
-  -- use({ "EdenEast/packer.nvim", branch = "feat/lockfile", opt = true })
+  -- use({ "wbthomason/packer.nvim", opt = true })
+  use({ "EdenEast/packer.nvim", branch = "feat/lockfile", opt = true })
   use({ "nvim-lua/plenary.nvim", module = "plenary" })
   use({ "nvim-lua/popup.nvim", module = "popup" })
 
@@ -272,7 +272,7 @@ local function plugins(use)
   -- use("tpope/vim-surround")
   use({
     "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    -- tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
       require("nvim-surround").setup({
         -- Configuration here, or leave empty to use defaults
