@@ -1,80 +1,54 @@
-local packer = require("util.packer")
-local util = require("util")
-
-local config = {
-  profile = {
-    enable = true,
-    threshold = 0, -- the amount in ms that a plugin load time must be over for it to be included in the profile
-  },
-  display = {
-    open_fn = function()
-      return require("packer.util").float({ border = "single" })
-    end,
-  },
-}
-
-local function plugins(use)
-  -- use({ "wbthomason/packer.nvim", opt = true })
-  use({ "EdenEast/packer.nvim", branch = "feat/lockfile", opt = true })
-  use({ "nvim-lua/plenary.nvim", module = "plenary" })
-  use({ "nvim-lua/popup.nvim", module = "popup" })
+return {
+  { "nvim-lua/plenary.nvim", name = "plenary" },
+  { "nvim-lua/popup.nvim", name = "popup" },
 
   -- LSP
-  use({ "ray-x/lsp_signature.nvim" })
-  use({ "b0o/SchemaStore.nvim", module = "schemastore" })
-  use({ "jose-elias-alvarez/typescript.nvim", module = "typescript" })
-  use({
+  { "ray-x/lsp_signature.nvim" },
+  { "b0o/SchemaStore.nvim", name = "schemastore" },
+  { "jose-elias-alvarez/typescript.nvim", name = "typescript" },
+  {
     "neovim/nvim-lspconfig",
-    opt = true,
     event = "BufReadPre",
-    wants = {
-      -- "workspace.nvim",
-      -- "nvim-lsp-ts-utils",
-      "null-ls.nvim",
-      "neodev.nvim",
-      "cmp-nvim-lsp",
-    },
     config = function()
       require("config.lsp")
     end,
-    requires = {
-      -- "jose-elias-alvarez/nvim-lsp-ts-utils",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
       "jose-elias-alvarez/null-ls.nvim",
       "folke/neodev.nvim",
     },
-  })
-  use({
+  },
+  {
     "j-hui/fidget.nvim",
     config = function()
       require("fidget").setup({})
     end,
-  })
-  use({
+  },
+  {
     "williamboman/mason.nvim",
-    module = "mason",
+    name = "mason",
     -- opt = true,
-  })
-  use({
+  },
+  {
     "williamboman/mason-lspconfig.nvim",
-    module = "mason-lspconfig",
+    name = "mason-lspconfig",
     -- opt = true,
-  })
 
+  },
   -- Autocomplete
-  use({
+  {
     "hrsh7th/nvim-cmp",
     config = function()
       require("config/cmp")
     end,
-    wants = { "LuaSnip" },
-    requires = {
+    dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
       {
         "L3MON4D3/LuaSnip",
-        wants = "friendly-snippets",
+        dependencies = "rafamadriz/friendly-snippets",
         config = function()
           require("config.snippets")
         end,
@@ -87,33 +61,33 @@ local function plugins(use)
         end,
       },
     },
-  })
-  use({
+  },
+  {
     "andymass/vim-matchup",
     event = "CursorMoved",
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
     end,
-  })
+  },
 
   -- Treesitter
-  use({
+  {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     config = function()
       require("config.treesitter")
     end,
-    requires = {
+    dependencies = {
       { "p00f/nvim-ts-rainbow" },
       { "windwp/nvim-ts-autotag" },
       { "nvim-treesitter/nvim-treesitter-refactor" },
       { "nvim-treesitter/playground" },
       { "nvim-treesitter/nvim-treesitter-textobjects" },
     },
-  })
+  },
 
   -- Smooth Scrolling
-  -- use({
+  -- {
   -- 	"karb94/neoscroll.nvim",
   -- 	keys = { "<C-u>", "<C-d>", "gg", "G" },
   -- 	config = function()
@@ -121,82 +95,80 @@ local function plugins(use)
   -- 	end,
   -- })
 
-  use({
+  {
     "windwp/nvim-spectre",
-    module = "spectre",
-  })
+    name = "spectre",
+  },
 
 
   -- Explorer
-  use({
+  {
     "kyazdani42/nvim-tree.lua",
     config = function()
       require("config.tree")
     end,
-  })
-  use({
+  },
+  "nvim-telescope/telescope-fzy-native.nvim",
+  {
     "nvim-telescope/telescope.nvim",
-    -- opt = true,
     config = function()
       require("config.telescope")
     end,
-    -- cmd = { "Telescope" },
-    wants = { "plenary.nvim", "popup.nvim", "telescope-fzy-native.nvim", "telescope-file-browser.nvim" },
-    requires = {
+    cmd = { "Telescope" },
+    dependencies = {
       { "nvim-lua/popup.nvim" },
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzy-native.nvim" },
       { "nvim-telescope/telescope-file-browser.nvim" },
     },
-  })
-  use({ "kevinhwang91/nvim-bqf", ft = "qf" })
+  },
+  { "kevinhwang91/nvim-bqf", ft = "qf" },
 
   -- Git
-  use({
+  {
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
-    wants = "plenary.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("config.gitsigns")
     end,
-  })
-  use({
+  },
+  {
     "sindrets/diffview.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
     config = function()
       require("diffview").setup({})
     end,
-  })
-  use({
+  },
+  {
     "TimUntersberger/neogit",
-    requires = { "nvim-lua/plenary.nvim" },
-    wants = "plenary.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
     cmd = "Neogit",
     config = function()
       require("config.neogit")
     end,
-  })
-  use("ThePrimeagen/git-worktree.nvim")
-  use("ThePrimeagen/harpoon")
-  use("tpope/vim-fugitive")
+  },
+  "ThePrimeagen/git-worktree.nvim",
+  "ThePrimeagen/harpoon",
+  "tpope/vim-fugitive",
 
   -- Look and feel
-  use({
+  {
     "RRethy/vim-illuminate",
     event = "BufReadPre",
     config = function()
       vim.g.Illuminate_delay = 1000
     end,
-  })
-  use({
+  },
+  {
+    event = "VeryLazy",
     "folke/tokyonight.nvim",
     config = function()
       require("config.theme")
     end,
-  })
-  use({
+  },
+  {
     "catppuccin/nvim",
     as = "catppuccin",
     config = function()
@@ -204,73 +176,73 @@ local function plugins(use)
         flavour = "macchiato", -- mocha, macchiato, frappe, latte
       })
     end,
-  })
-  use("christianchiarulli/nvcode-color-schemes.vim")
-  use({
+  },
+  "christianchiarulli/nvcode-color-schemes.vim",
+  {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
     end,
-  })
-  use({
+  },
+  {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
       require("config.indent")
     end,
-  })
-  use({
+  },
+  {
     "akinsho/nvim-bufferline.lua",
     -- tag = "v2.*",
-    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
     config = function()
       require("config.bufferline")
     end,
-  })
-  use("folke/lsp-trouble.nvim")
-  use({
+  },
+  "folke/lsp-trouble.nvim",
+  {
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = "BufReadPost",
     config = function()
       require("config.todo")
     end,
-  })
-  use({
+  },
+  {
     "hoob3rt/lualine.nvim",
     event = "VimEnter",
     config = function()
       require("config.statusline")
     end,
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
-  })
-  use({
+    dependencies = { "kyazdani42/nvim-web-devicons", opt = true },
+  },
+  {
     "rcarriga/nvim-notify",
     config = function()
       vim.notify = require("notify")
     end,
-  })
+  },
 
   -- Terminal
-  use({
+  {
     "akinsho/nvim-toggleterm.lua",
     -- tag = "v2.*",
     keys = [[<c-\>]],
     config = function()
       require("config.terminal")
     end,
-  })
+  },
 
   -- General Plugins
-  use({
+  {
     "folke/which-key.nvim",
-    -- event = "VimEnter",
+    event = "VimEnter",
     config = function()
       require("mappings")
     end,
-  })
-  use("voldikss/vim-floaterm")
-  -- use("tpope/vim-surround")
-  use({
+  },
+  "voldikss/vim-floaterm",
+  -- "tpope/vim-surround")
+  {
     "kylechui/nvim-surround",
     -- tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
@@ -290,9 +262,9 @@ local function plugins(use)
         },
       })
     end,
-  })
-  use("JoosepAlviste/nvim-ts-context-commentstring")
-  use({
+  },
+  "JoosepAlviste/nvim-ts-context-commentstring",
+  {
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup({
@@ -320,23 +292,21 @@ local function plugins(use)
         end,
       })
     end,
-  })
-  use("kazhala/close-buffers.nvim")
-  use({
+  },
+  "kazhala/close-buffers.nvim",
+  {
     "ggandor/lightspeed.nvim",
     keys = { "s", "S", "f", "F", "t", "T" },
     config = function()
       require("config.lightspeed")
     end,
-  })
-  use({
+  },
+  {
     "folke/persistence.nvim",
     event = "BufReadPre",
-    module = "persistence",
+    name = "persistence",
     config = function()
       require("persistence").setup()
     end,
-  })
-end
-
-return packer.setup(config, plugins)
+  },
+}

@@ -16,6 +16,7 @@ local function on_attach(client, bufnr)
 end
 
 local servers = {
+  yamlls = {},
   bashls = {},
   clangd = {},
   cssls = {},
