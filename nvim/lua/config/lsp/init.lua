@@ -6,13 +6,25 @@ local function on_attach(client, bufnr)
   require("config.lsp.formatting").setup(client, bufnr)
   require("config.lsp.keys").setup(client, bufnr)
   require("config.lsp.highlighting").setup(client)
+end
 
-  -- TypeScript specific stuff
-  -- if client.name == "tsserver" then
-  --   -- require("config.lsp.typescript").setup(client)
-  --   client.server_capabilities.document_formatting = false
-  --   client.server_capabilities.document_range_formatting = false
-  -- end
+local function filter(arr, fn)
+  if type(arr) ~= "table" then
+    return arr
+  end
+
+  local filtered = {}
+  for k, v in pairs(arr) do
+    if fn(v, k, arr) then
+      table.insert(filtered, v)
+    end
+  end
+
+  return filtered
+end
+
+local function filterReactDTS(value)
+  return string.match(value.targetUri, "%.d.ts") == nil
 end
 
 local servers = {
@@ -74,10 +86,22 @@ local servers = {
     eslint_enable_diagnostics = true,
     eslint_enable_disable_comments = true,
     auto_inlay_hints = false,
+    handlers = {
+      ['textDocument/definition'] = function(err, result, method, ...)
+        if vim.tbl_islist(result) and #result > 1 then
+          local filtered_result = filter(result, filterReactDTS)
+          return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
+        end
+
+        vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
+      end
+    }
   },
   rust_analyzer = {},
   -- graphql = {},
+  smithy_ls = {},
 }
+
 
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local capabilities = vim.lsp.protocol.make_client_capabilities()

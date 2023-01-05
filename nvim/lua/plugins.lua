@@ -1,11 +1,11 @@
 return {
-  { "nvim-lua/plenary.nvim", name = "plenary" },
-  { "nvim-lua/popup.nvim", name = "popup" },
+  "nvim-lua/plenary.nvim",
+  "nvim-lua/popup.nvim",
 
   -- LSP
-  { "ray-x/lsp_signature.nvim" },
-  { "b0o/SchemaStore.nvim", name = "schemastore" },
-  { "jose-elias-alvarez/typescript.nvim", name = "typescript" },
+  "ray-x/lsp_signature.nvim",
+  "b0o/SchemaStore.nvim",
+  "jose-elias-alvarez/typescript.nvim",
   {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
@@ -24,20 +24,12 @@ return {
       require("fidget").setup({})
     end,
   },
-  {
-    "williamboman/mason.nvim",
-    name = "mason",
-    -- opt = true,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    name = "mason-lspconfig",
-    -- opt = true,
-
-  },
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
   -- Autocomplete
   {
     "hrsh7th/nvim-cmp",
+    lazy = true,
     config = function()
       require("config/cmp")
     end,
@@ -78,11 +70,11 @@ return {
       require("config.treesitter")
     end,
     dependencies = {
-      { "p00f/nvim-ts-rainbow" },
-      { "windwp/nvim-ts-autotag" },
-      { "nvim-treesitter/nvim-treesitter-refactor" },
-      { "nvim-treesitter/playground" },
-      { "nvim-treesitter/nvim-treesitter-textobjects" },
+      "p00f/nvim-ts-rainbow",
+      "windwp/nvim-ts-autotag",
+      "nvim-treesitter/nvim-treesitter-refactor",
+      "nvim-treesitter/playground",
+      "nvim-treesitter/nvim-treesitter-textobjects",
     },
   },
 
@@ -95,11 +87,7 @@ return {
   -- 	end,
   -- })
 
-  {
-    "windwp/nvim-spectre",
-    name = "spectre",
-  },
-
+  "windwp/nvim-spectre",
 
   -- Explorer
   {
@@ -108,7 +96,6 @@ return {
       require("config.tree")
     end,
   },
-  "nvim-telescope/telescope-fzy-native.nvim",
   {
     "nvim-telescope/telescope.nvim",
     config = function()
@@ -116,10 +103,11 @@ return {
     end,
     cmd = { "Telescope" },
     dependencies = {
-      { "nvim-lua/popup.nvim" },
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope-fzy-native.nvim" },
-      { "nvim-telescope/telescope-file-browser.nvim" },
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+      -- "nvim-telescope/telescope-fzy-native.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      "nvim-telescope/telescope-file-browser.nvim",
     },
   },
   { "kevinhwang91/nvim-bqf", ft = "qf" },
@@ -162,8 +150,10 @@ return {
     end,
   },
   {
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 999,
     config = function()
       require("config.theme")
     end,
@@ -295,16 +285,16 @@ return {
   },
   "kazhala/close-buffers.nvim",
   {
-    "ggandor/lightspeed.nvim",
-    keys = { "s", "S", "f", "F", "t", "T" },
+    "ggandor/leap.nvim",
+    event = "VeryLazy",
+    dependencies = { { "ggandor/flit.nvim", config = { labeled_modes = "nv" } } },
     config = function()
-      require("config.lightspeed")
+      require("leap").add_default_mappings(true)
     end,
   },
   {
     "folke/persistence.nvim",
     event = "BufReadPre",
-    name = "persistence",
     config = function()
       require("persistence").setup()
     end,
