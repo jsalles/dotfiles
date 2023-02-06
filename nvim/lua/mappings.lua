@@ -21,16 +21,16 @@ util.nnoremap("<leader>d", '"_d')
 util.vnoremap("<leader>d", '"_d')
 
 -- Move to window using the <ctrl> movement keys
-util.nmap("<left>", "<C-w>h")
-util.nmap("<down>", "<C-w>j")
-util.nmap("<up>", "<C-w>k")
-util.nmap("<right>", "<C-w>l")
+-- util.nmap("<left>", "<C-w>h")
+-- util.nmap("<down>", "<C-w>j")
+-- util.nmap("<up>", "<C-w>k")
+-- util.nmap("<right>", "<C-w>l")
 
 -- Resize window using <ctrl> arrow keys
-util.nnoremap("<C-Up>", ":resize +2<CR>")
-util.nnoremap("<C-Down>", ":resize -2<CR>")
-util.nnoremap("<C-Left>", ":vertical resize -2<CR>")
-util.nnoremap("<C-Right>", ":vertical resize +2<CR>")
+util.nnoremap("<Up>", ":resize +2<CR>")
+util.nnoremap("<Down>", ":resize -2<CR>")
+util.nnoremap("<Left>", ":vertical resize -2<CR>")
+util.nnoremap("<Right>", ":vertical resize +2<CR>")
 
 -- Move Lines
 util.nnoremap("<A-j>", ":m .+1<CR>==")
@@ -211,6 +211,13 @@ local leader = {
     n = { "<cmd>enew<cr>", "New File" },
     m = { "<cmd>Telescope harpoon marks<CR>", "Marks" }
     -- d = "Dot Files"
+  },
+  o = {
+    name = "+alternates",
+    o = { "<cmd>Other<cr>", "List" },
+    i = { "<cmd>Other implementation<cr>", "Implementation" },
+    t = { "<cmd>Other tests<cr>", "Tests" },
+    s = { "<cmd>Other styles<cr>", "Styles" },
   },
   t = {
     name = "toggle",

@@ -49,6 +49,7 @@ require("telescope").load_extension("fzf")
 require("telescope").load_extension("git_worktree")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("harpoon")
+-- require("telescope").load_extension("telescope-alternate")
 
 -- Implement delta as previewer for diffs
 

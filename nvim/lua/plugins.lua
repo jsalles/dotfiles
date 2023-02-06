@@ -2,6 +2,20 @@ return {
   "nvim-lua/plenary.nvim",
   "nvim-lua/popup.nvim",
 
+  { 'alexghergh/nvim-tmux-navigation', config = function()
+    require('nvim-tmux-navigation').setup({
+      disable_when_zoomed = true, -- defaults to false
+      keybindings = {
+        left = "<C-h>",
+        down = "<C-j>",
+        up = "<C-k>",
+        right = "<C-l>",
+        last_active = "<C-\\>",
+        next = "<C-Space>",
+      }
+    })
+  end
+  },
   -- LSP
   "ray-x/lsp_signature.nvim",
   "b0o/SchemaStore.nvim",
@@ -15,7 +29,6 @@ return {
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "jose-elias-alvarez/null-ls.nvim",
-      "folke/neodev.nvim",
     },
   },
   {
@@ -28,6 +41,118 @@ return {
   "williamboman/mason-lspconfig.nvim",
   -- Autocomplete
   {
+    "L3MON4D3/LuaSnip",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    },
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+    },
+    -- stylua: ignore
+    -- keys = {
+    --   {
+    --     "<tab>",
+    --     function()
+    --       return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+    --     end,
+    --     expr = true, silent = true, mode = "i",
+    --   },
+    --   { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+    --   { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+    -- },
+  },
+  { 'rgroli/other.nvim',
+    config = function()
+      require("other-nvim").setup({
+        rememberBuffers = false,
+        mappings = {
+          {
+            pattern = "src/(.*)/(%a*).test.tsx",
+            target = {
+              {
+                target = "src/%1/%2.tsx",
+                context = "implementation"
+              },
+              {
+                target = "src/%1/%2.module.css",
+                context = "styles"
+              }
+            }
+          },
+          {
+            pattern = "src/(.*)/(%a*).tsx",
+            target = {
+              {
+                target = "src/%1/%2.test.tsx",
+                context = "tests"
+              },
+              {
+                target = "src/%1/%2.module.css",
+                context = "styles"
+              }
+            }
+          },
+          {
+            pattern = "src/(.*)/(%a*).module.css",
+            target = {
+              {
+                target = "src/%1/%2.tsx",
+                context = "implementation"
+              },
+              {
+                target = "src/%1/%2.test.tsx",
+                context = "tests"
+              }
+            }
+          },
+          {
+            pattern = "(.*).cpp",
+            target = {
+              {
+                target = "%1_test.cpp",
+                context = "tests",
+              },
+              {
+                target = "%1.h",
+                context = "definitions",
+              }
+            }
+          },
+          {
+            pattern = "(.*)_test.cpp",
+            target = {
+              {
+                target = "%1.cpp",
+                context = "implementation",
+              },
+              {
+                target = "%1.h",
+                context = "definitions",
+              }
+            }
+          },
+          {
+            pattern = "(.*).h",
+            target = {
+              {
+                target = "%1_test.cpp",
+                context = "tests",
+              },
+              {
+                target = "%1.cpp",
+                context = "implementation",
+              }
+            }
+          }
+        }
+      })
+    end,
+  },
+  {
     "hrsh7th/nvim-cmp",
     lazy = true,
     config = function()
@@ -38,14 +163,14 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
-      {
-        "L3MON4D3/LuaSnip",
-        dependencies = "rafamadriz/friendly-snippets",
-        config = function()
-          require("config.snippets")
-        end,
-      },
-      "rafamadriz/friendly-snippets",
+      -- {
+      --   "L3MON4D3/LuaSnip",
+      --   dependencies = "rafamadriz/friendly-snippets",
+      --   config = function()
+      --     require("config.snippets")
+      --   end,
+      -- },
+      -- "rafamadriz/friendly-snippets",
       {
         "windwp/nvim-autopairs",
         config = function()
@@ -88,7 +213,7 @@ return {
   -- })
 
   "windwp/nvim-spectre",
-
+  -- "Exafunction/codeium.vim",
   -- Explorer
   {
     "kyazdani42/nvim-tree.lua",
@@ -232,25 +357,44 @@ return {
   },
   "voldikss/vim-floaterm",
   -- "tpope/vim-surround")
+  -- {
+  --   "kylechui/nvim-surround",
+  --   -- tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+  --   config = function()
+  --     require("nvim-surround").setup({
+  --       -- Configuration here, or leave empty to use defaults
+  --       keymaps = {
+  --         insert = "<C-g>s",
+  --         insert_line = "<C-g>S",
+  --         normal = "ys",
+  --         normal_cur = "yss",
+  --         normal_line = "yS",
+  --         normal_cur_line = "ySS",
+  --         visual = "gs",
+  --         visual_line = "gS",
+  --         delete = "ds",
+  --         change = "cs",
+  --       },
+  --     })
+  --   end,
+  -- },
   {
-    "kylechui/nvim-surround",
-    -- tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-        keymaps = {
-          insert = "<C-g>s",
-          insert_line = "<C-g>S",
-          normal = "ys",
-          normal_cur = "yss",
-          normal_line = "yS",
-          normal_cur_line = "ySS",
-          visual = "gs",
-          visual_line = "gS",
-          delete = "ds",
-          change = "cs",
-        },
-      })
+    "echasnovski/mini.surround",
+    keys = { "gz" },
+    opts = {
+      mappings = {
+        add = "gza", -- Add surrounding in Normal and Visual modes
+        delete = "gzd", -- Delete surrounding
+        -- find = "gzf", -- Find surrounding (to the right)
+        -- find_left = "gzF", -- Find surrounding (to the left)
+        -- highlight = "gzh", -- Highlight surrounding
+        replace = "gzc", -- Replace surrounding
+        -- update_n_lines = "gzn", -- Update `n_lines`
+      },
+    },
+    config = function(_, opts)
+      -- use gz mappings instead of s to prevent conflict with leap
+      require("mini.surround").setup(opts)
     end,
   },
   "JoosepAlviste/nvim-ts-context-commentstring",

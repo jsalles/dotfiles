@@ -100,6 +100,7 @@ local servers = {
   rust_analyzer = {},
   -- graphql = {},
   smithy_ls = {},
+  gopls = {},
 }
 
 
@@ -112,7 +113,7 @@ capabilities.textDocument.foldingRange = {
 }
 
 -- require(".neoconf.json").setup()
-require("neodev").setup()
+-- require("neodev").setup()
 
 local options = {
   on_attach = on_attach,
@@ -122,7 +123,6 @@ local options = {
   },
 }
 -- require("config.lsp.install").setup(servers, options)
-require("lsp_signature").setup()
 
 for server, opts in pairs(servers) do
   opts = vim.tbl_deep_extend("force", {}, options, opts or {})
