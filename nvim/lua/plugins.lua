@@ -2,19 +2,21 @@ return {
   "nvim-lua/plenary.nvim",
   "nvim-lua/popup.nvim",
 
-  { 'alexghergh/nvim-tmux-navigation', config = function()
-    require('nvim-tmux-navigation').setup({
-      disable_when_zoomed = true, -- defaults to false
-      keybindings = {
-        left = "<C-h>",
-        down = "<C-j>",
-        up = "<C-k>",
-        right = "<C-l>",
-        last_active = "<C-\\>",
-        next = "<C-Space>",
-      }
-    })
-  end
+  {
+    'alexghergh/nvim-tmux-navigation',
+    event = "VeryLazy",
+    config = function()
+      require('nvim-tmux-navigation').setup({
+        disable_when_zoomed = true, -- defaults to false
+        keybindings = {
+          left = "<C-h>",
+          down = "<C-j>",
+          up = "<C-k>",
+          right = "<C-l>",
+          next = "<C-Space>",
+        }
+      })
+    end
   },
   -- LSP
   "ray-x/lsp_signature.nvim",
@@ -42,6 +44,7 @@ return {
   -- Autocomplete
   {
     "L3MON4D3/LuaSnip",
+    lazy = true,
     dependencies = {
       "rafamadriz/friendly-snippets",
       config = function()
@@ -53,17 +56,17 @@ return {
       delete_check_events = "TextChanged",
     },
     -- stylua: ignore
-    -- keys = {
-    --   {
-    --     "<tab>",
-    --     function()
-    --       return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-    --     end,
-    --     expr = true, silent = true, mode = "i",
-    --   },
-    --   { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
-    --   { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
-    -- },
+    keys = {
+      {
+        "<tab>",
+        function()
+          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+        end,
+        expr = true, silent = true, mode = "i",
+      },
+      { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+    },
   },
   { 'rgroli/other.nvim',
     config = function()
@@ -191,6 +194,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
+    event = "BufReadPost",
     config = function()
       require("config.treesitter")
     end,
@@ -335,6 +339,24 @@ return {
     config = function()
       vim.notify = require("notify")
     end,
+    keys = {
+      {
+        "<leader>un",
+        function()
+          require("notify").dismiss({ silent = true, pending = true })
+        end,
+        desc = "Delete all notifications",
+      },
+      opts = {
+        timeout = 3000,
+        max_height = function()
+          return math.floor(vim.o.lines * 0.75)
+        end,
+        max_width = function()
+          return math.floor(vim.o.columns * 0.75)
+        end
+      }
+    }
   },
 
   -- Terminal
@@ -397,9 +419,10 @@ return {
       require("mini.surround").setup(opts)
     end,
   },
-  "JoosepAlviste/nvim-ts-context-commentstring",
+  { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
   {
     "numToStr/Comment.nvim",
+    event = "VeryLazy",
     config = function()
       require("Comment").setup({
         pre_hook = function(ctx)

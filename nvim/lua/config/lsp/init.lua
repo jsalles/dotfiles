@@ -28,79 +28,79 @@ local function filterReactDTS(value)
 end
 
 local servers = {
-  yamlls = {},
-  bashls = {},
-  clangd = {},
-  cssls = {},
-  jsonls = {
-    settings = {
-      json = {
-        format = {
-          enable = false,
+    yamlls = {},
+    bashls = {},
+    clangd = {},
+    cssls = {},
+    jsonls = {
+        settings = {
+            json = {
+                format = {
+                    enable = false,
+                },
+                schemas = require("schemastore").json.schemas(),
+                validate = { enable = true },
+            },
         },
-        schemas = require("schemastore").json.schemas(),
-        validate = { enable = true },
-      },
     },
-  },
-  html = {},
-  sumneko_lua = {
-    settings = {
-      Lua = {
-        workspace = {
-          checkThirdParty = false,
+    html = {},
+    lua_ls = {
+        settings = {
+            Lua = {
+                workspace = {
+                    checkThirdParty = false,
+                },
+                completion = {
+                    workspaceWord = true,
+                },
+                misc = {
+                    parameters = {
+                        "--log-level=trace",
+                    },
+                },
+                format = {
+                    enable = true,
+                    defaultConfig = {
+                        indent_style = "space",
+                        indent_size = "2",
+                        continuation_indent_size = "2",
+                    },
+                },
+            },
         },
-        completion = {
-          workspaceWord = true,
-        },
-        misc = {
-          parameters = {
-            "--log-level=trace",
-          },
-        },
-        format = {
-          enable = true,
-          defaultConfig = {
-            indent_style = "space",
-            indent_size = "2",
-            continuation_indent_size = "2",
-          },
-        },
-      },
     },
-  },
-  eslint = {
-    enable = true,
-    format = { enable = true },
-    lintTask = { enable = true },
-    autoFixOnSave = true,
-    codeActionsOnSave = {
-      mode = "all",
+    eslint = {
+        enable = true,
+        format = { enable = true },
+        lintTask = { enable = true },
+        autoFixOnSave = true,
+        codeActionsOnSave = {
+            mode = "all",
+        },
+        root_dir = require("lspconfig").util.root_pattern(".git", "yarn.lock", "package.json"),
     },
-    root_dir = require("lspconfig").util.root_pattern(".git", "yarn.lock", "package.json"),
-  },
-  tsserver = {
-    enable_import_on_completion = false,
-    import_on_completion_timeout = 5000,
-    eslint_bin = "eslint_d", -- use eslint_d if possible!
-    eslint_enable_diagnostics = true,
-    eslint_enable_disable_comments = true,
-    auto_inlay_hints = false,
-    handlers = {
-      ['textDocument/definition'] = function(err, result, method, ...)
-        if vim.tbl_islist(result) and #result > 1 then
-          local filtered_result = filter(result, filterReactDTS)
-          return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
-        end
+    tsserver = {
+        enable_import_on_completion = false,
+        import_on_completion_timeout = 5000,
+        eslint_bin = "eslint_d", -- use eslint_d if possible!
+        eslint_enable_diagnostics = true,
+        eslint_enable_disable_comments = true,
+        auto_inlay_hints = false,
+        handlers = {
+            ['textDocument/definition'] = function(err, result, method, ...)
+              if vim.tbl_islist(result) and #result > 1 then
+                local filtered_result = filter(result, filterReactDTS)
+                return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
+              end
 
-        vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
-      end
-    }
-  },
-  rust_analyzer = {},
-  -- graphql = {},
-  smithy_ls = {},
-  gopls = {},
+              vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
+            end
+        }
+    },
+    rust_analyzer = {},
+    -- graphql = {},
+    smithy_ls = {},
+    gopls = {},
 }
 
 
@@ -108,19 +108,19 @@ local servers = {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true,
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
 }
 
 -- require(".neoconf.json").setup()
 -- require("neodev").setup()
 
 local options = {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+        debounce_text_changes = 150,
+    },
 }
 -- require("config.lsp.install").setup(servers, options)
 
