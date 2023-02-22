@@ -64,8 +64,8 @@ return {
         end,
         expr = true, silent = true, mode = "i",
       },
-      { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
-      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+      { "<tab>",   function() require("luasnip").jump(1) end,   mode = "s" },
+      { "<s-tab>", function() require("luasnip").jump( -1) end, mode = { "i", "s" } },
     },
   },
   { 'rgroli/other.nvim',
@@ -239,7 +239,7 @@ return {
       "nvim-telescope/telescope-file-browser.nvim",
     },
   },
-  { "kevinhwang91/nvim-bqf", ft = "qf" },
+  { "kevinhwang91/nvim-bqf",                       ft = "qf" },
 
   -- Git
   {
@@ -357,6 +357,22 @@ return {
         end
       }
     }
+  },
+  {
+    "SmiteshP/nvim-navic",
+    lazy = true,
+    init = function()
+      vim.g.navic_silence = true
+    end,
+    opts = function()
+      local icons = require("icons")
+      return {
+        separator = " ",
+        highlight = true,
+        depth_limit = 5,
+        icons = icons.kinds,
+      }
+    end,
   },
 
   -- Terminal
