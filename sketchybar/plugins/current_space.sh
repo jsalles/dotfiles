@@ -1,12 +1,9 @@
 #!/usr/bin/env sh
 
 inactive_spaces() {
-  echo "Start of inactive spaces" >> "$HOME/dotfiles/sketchybar/output.txt"
   SPACES=$(yabai -m query --spaces | jq -cr '.[] | select(."has-focus" == false) | if .label == "" then .index else .label end')
-  echo $SPACES >> "$HOME/dotfiles/sketchybar/output.txt"
   for SPACE in $SPACES
   do
-  echo $SPACE >> "$HOME/dotfiles/sketchybar/output.txt"
   sketchybar --set	$SPACE \
               background.color=0x01010101 \
               icon.color=0xffffffff
@@ -15,14 +12,10 @@ inactive_spaces() {
 }
 
 active_space() {
-  echo "Start of active space" >> "$HOME/dotfiles/sketchybar/output.txt"
   SPACE=$(yabai -m query --spaces --space | jq -r 'if .label == "" then .index else .label end')
-  echo $SPACE >> "$HOME/dotfiles/sketchybar/output.txt"
   sketchybar --set $SPACE \
     background.color=0xfff5a97f \
     icon.color=0xff24273a
-
-  echo "End of active space" >> "$HOME/dotfiles/sketchybar/output.txt"
 }
 
 # update_space() {

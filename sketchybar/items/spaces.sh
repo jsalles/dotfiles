@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 
-PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 
 SPACES=$(yabai -m query --spaces | jq -r 'map({ label: .label, index: .index, active: ."has-focus" })' | jq -cr '.[] | [if .label == "" then .index else .label end, .active|tostring] | join(",")')
 for SPACE in $SPACES
