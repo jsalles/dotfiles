@@ -47,4 +47,3 @@ toggle_detail() {
 # else
   toggle_detail
 # fi
-echo "Volume_Click triggered" >> "/Users/jvsalles/dotfiles/output.txt"
