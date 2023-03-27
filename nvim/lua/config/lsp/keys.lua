@@ -12,26 +12,6 @@ function M.setup(client, bufnr)
       name = "+code",
       r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
       a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-      d = {
-        "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>",
-        "Line Diagnostics",
-      },
-      l = {
-        name = "+lsp",
-        i = { "<cmd>LspInfo<cr>", "Lsp Info" },
-        a = {
-          "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>",
-          "Add Folder",
-        },
-        r = {
-          "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>",
-          "Remove Folder",
-        },
-        l = {
-          "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-          "List Folders",
-        },
-      },
     },
     x = {
       s = {

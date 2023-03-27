@@ -22,6 +22,7 @@ return {
   "ray-x/lsp_signature.nvim",
   "b0o/SchemaStore.nvim",
   "jose-elias-alvarez/typescript.nvim",
+  "simrat39/rust-tools.nvim",
   {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
@@ -62,13 +63,16 @@ return {
         function()
           return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
         end,
-        expr = true, silent = true, mode = "i",
+        expr = true,
+        silent = true,
+        mode = "i",
       },
-      { "<tab>",   function() require("luasnip").jump(1) end,   mode = "s" },
-      { "<s-tab>", function() require("luasnip").jump( -1) end, mode = { "i", "s" } },
+      { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
+      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     },
   },
-  { 'rgroli/other.nvim',
+  {
+    'rgroli/other.nvim',
     config = function()
       require("other-nvim").setup({
         rememberBuffers = false,
@@ -189,6 +193,22 @@ return {
       vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
     end,
   },
+  -- {
+  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  --   config = function()
+  --     require("lsp_lines").setup()
+  --     vim.diagnostic.config({ virtual_lines = false })
+  --   end,
+  --   keys = {
+  --     {
+  --       "<leader>cd",
+  --       function()
+  --         require("lsp_lines").toggle()
+  --       end,
+  --       desc = "Toggle diagnostic lines"
+  --     },
+  --   }
+  -- },
 
   -- Treesitter
   {
@@ -269,6 +289,17 @@ return {
   "ThePrimeagen/git-worktree.nvim",
   "ThePrimeagen/harpoon",
   "tpope/vim-fugitive",
+  {
+    "aaronhallaert/ts-advanced-git-search.nvim",
+    config = function()
+      require("telescope").load_extension("advanced_git_search")
+    end,
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      -- to show diff splits and open commits in browser
+      "tpope/vim-fugitive",
+    },
+  },
 
   -- Look and feel
   {
@@ -336,6 +367,7 @@ return {
   },
   {
     "rcarriga/nvim-notify",
+    lazy = false,
     config = function()
       vim.notify = require("notify")
     end,
@@ -421,7 +453,7 @@ return {
     keys = { "gz" },
     opts = {
       mappings = {
-        add = "gza", -- Add surrounding in Normal and Visual modes
+        add = "gza",    -- Add surrounding in Normal and Visual modes
         delete = "gzd", -- Delete surrounding
         -- find = "gzf", -- Find surrounding (to the right)
         -- find_left = "gzF", -- Find surrounding (to the left)

@@ -98,12 +98,17 @@ local servers = {
 
         vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
       end
+    },
+  },
+  rust_analyzer = {
+    checkOnSave = {
+      command = "clippy"
     }
   },
-  rust_analyzer = {},
   -- graphql = {},
   smithy_ls = {},
   gopls = {},
+  pylsp = {},
 }
 
 
@@ -131,6 +136,21 @@ for server, opts in pairs(servers) do
   opts = vim.tbl_deep_extend("force", {}, options, opts or {})
   if server == "tsserver" then
     require("typescript").setup({ server = opts })
+  elseif server == "rust" or server == "rust_analyzer" then
+    require("rust-tools").setup({
+      tools = {
+        runnables = {
+          use_telescope = true,
+        },
+        inlay_hints = {
+          auto = true,
+          show_parameter_hints = false,
+          parameter_hints_prefix = "",
+          other_hints_prefix = "",
+        },
+      },
+      server = opts
+    })
   else
     require("lspconfig")[server].setup(opts)
   end

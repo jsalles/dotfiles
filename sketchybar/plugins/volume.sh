@@ -1,18 +1,48 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
-echo $INFO
+WIDTH=100
+VOLUME_100=􀊩
+VOLUME_66=􀊧
+VOLUME_33=􀊥
+VOLUME_10=􀊡
+VOLUME_0=􀊣
 
-case ${INFO} in
-  [6-9][0-9]|100)
-    ICON=""
-    ICON_PADDING_RIGHT=5
+volume_change() {
+  case $INFO in
+    [6-9][0-9]|100) ICON=$VOLUME_100
     ;;
-  [1-5][0-9]|[1-9])
-    ICON=""
-    ICON_PADDING_RIGHT=11
+    [3-5][0-9]) ICON=$VOLUME_66
     ;;
-  *) ICON=""
-    ICON_PADDING_RIGHT=15
+    [1-2][0-9]) ICON=$VOLUME_33
+    ;;
+    [1-9]) ICON=$VOLUME_10
+    ;;
+    0) ICON=$VOLUME_0
+    ;;
+    *) ICON=$VOLUME_100
+  esac
+
+  sketchybar --set $NAME label=$ICON
+
+  sketchybar --set $NAME slider.percentage=$INFO \
+             --animate tanh 30 --set $NAME slider.width=$WIDTH 
+
+  sleep 2
+
+  # Check wether the volume was changed another time while sleeping
+  FINAL_PERCENTAGE=$(sketchybar --query $NAME | jq -r ".slider.percentage")
+  if [ "$FINAL_PERCENTAGE" -eq "$INFO" ]; then
+    sketchybar --animate tanh 30 --set $NAME slider.width=0
+  fi
+}
+
+mouse_clicked() {
+  osascript -e "set volume output volume $PERCENTAGE"
+}
+
+case "$SENDER" in
+  "volume_change") volume_change
+  ;;
+  "mouse.clicked") mouse_clicked
+  ;;
 esac
-
-sketchybar --set $NAME icon=$ICON icon.padding_right=$ICON_PADDING_RIGHT

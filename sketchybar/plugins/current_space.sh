@@ -1,21 +1,20 @@
 #!/usr/bin/env sh
 
 inactive_spaces() {
-  SPACES=$(yabai -m query --spaces | jq -cr '.[] | select(."has-focus" == false) | if .label == "" then .index else .label end')
-  for SPACE in $SPACES
-  do
-  sketchybar --set	$SPACE \
-              background.color=0x01010101 \
-              icon.color=0xffffffff
-  done
-  echo "End of inactive spaces" >> "$HOME/dotfiles/sketchybar/output.txt"
+	SPACES=$(yabai -m query --spaces | jq -cr '.[] | select(."has-focus" == false) | if .label == "" then .index else .label end')
+	for SPACE in $SPACES; do
+		sketchybar --set $SPACE \
+			background.color=0x01010101 \
+			icon.color=0xffffffff
+	done
+	echo "End of inactive spaces" >>"$HOME/dotfiles/sketchybar/output.txt"
 }
 
 active_space() {
-  SPACE=$(yabai -m query --spaces --space | jq -r 'if .label == "" then .index else .label end')
-  sketchybar --set $SPACE \
-    background.color=0xfff5a97f \
-    icon.color=0xff24273a
+	SPACE=$(yabai -m query --spaces --space | jq -r 'if .label == "" then .index else .label end')
+	sketchybar --set $SPACE \
+		background.color=0xfff5a97f \
+		icon.color=0xff24273a
 }
 
 # update_space() {
@@ -42,7 +41,7 @@ active_space() {
 # }
 
 # case "$SENDER" in
-#   "mouse.clicked") 
+#   "mouse.clicked")
 #     # Reload sketchybar
 #     sketchybar --remove '/.*/'
 #     source $HOME/.config/sketchybar/sketchybarrc

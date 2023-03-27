@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-echo $INFO
 WINDOW_TITLE=$(yabai -m query --windows --window | jq -r ".title")
+INFO=$(yabai -m query --windows --window | jq -r ".app")
 
 ICON_PADDING_RIGHT=10
 
