@@ -1,5 +1,19 @@
 local cmp = require("cmp")
 
+local function border(hl_name)
+  return {
+    { "╭", hl_name },
+    { "─", hl_name },
+    { "╮", hl_name },
+    { "│", hl_name },
+    { "╯", hl_name },
+    { "─", hl_name },
+    { "╰", hl_name },
+    { "│", hl_name },
+  }
+end
+
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -28,7 +42,15 @@ cmp.setup({
   formatting = {
     format = require("config.lsp.kind").cmp_format(),
   },
-  -- documentation = {
-  -- 	border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-  -- },
+  window = {
+    completion = cmp.config.window.bordered {
+      border = border("CmpBorder"),
+      winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+    },
+    documentation = cmp.config.window.bordered {
+      documentation = {
+        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      },
+    },
+  },
 })

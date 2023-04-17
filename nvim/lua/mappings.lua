@@ -96,7 +96,7 @@ vim.api.nvim_exec(
 
   xnoremap * :<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
   xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
-]] ,
+]],
   false
 )
 
@@ -275,7 +275,6 @@ local leader = {
     a = { function() require("harpoon.mark").add_file() end, "Add mark" },
     n = { function() require("harpoon.ui").nav_next() end, "Next" },
     p = { function() require("harpoon.ui").nav_prev() end, "Previous" }
-
   },
   x = {
     name = "+errors",
@@ -296,6 +295,11 @@ local leader = {
     },
     d = { require("persistence").stop, "Stop" },
   },
+  y = {
+    name = "+yank",
+    p = { ":let @+ = expand('%:p')<CR>", "Path" },
+    f = { ":let @+ = expand('%')<CR>", "File Location" },
+  }
   -- Z = {[[<cmd>lua require("zen-mode").reset()<cr>]], "Zen Mode"},
   -- z = {[[<cmd>ZenMode<cr>]], "Zen Mode"},
   -- T = {[[<Plug>PlenaryTestFile]], "Plenary Test"}
