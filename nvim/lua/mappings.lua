@@ -21,16 +21,16 @@ util.nnoremap("<leader>d", '"_d')
 util.vnoremap("<leader>d", '"_d')
 
 -- Move to window using the <ctrl> movement keys
-util.nmap("<left>", "<C-w>h")
-util.nmap("<down>", "<C-w>j")
-util.nmap("<up>", "<C-w>k")
-util.nmap("<right>", "<C-w>l")
+-- util.nmap("<left>", "<C-w>h")
+-- util.nmap("<down>", "<C-w>j")
+-- util.nmap("<up>", "<C-w>k")
+-- util.nmap("<right>", "<C-w>l")
 
 -- Resize window using <ctrl> arrow keys
-util.nnoremap("<C-Up>", ":resize +2<CR>")
-util.nnoremap("<C-Down>", ":resize -2<CR>")
-util.nnoremap("<C-Left>", ":vertical resize -2<CR>")
-util.nnoremap("<C-Right>", ":vertical resize +2<CR>")
+util.nnoremap("<Up>", ":resize +2<CR>")
+util.nnoremap("<Down>", ":resize -2<CR>")
+util.nnoremap("<Left>", ":vertical resize -2<CR>")
+util.nnoremap("<Right>", ":vertical resize +2<CR>")
 
 -- Move Lines
 util.nnoremap("<A-j>", ":m .+1<CR>==")
@@ -96,7 +96,7 @@ vim.api.nvim_exec(
 
   xnoremap * :<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
   xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
-]] ,
+]],
   false
 )
 
@@ -212,6 +212,13 @@ local leader = {
     m = { "<cmd>Telescope harpoon marks<CR>", "Marks" }
     -- d = "Dot Files"
   },
+  o = {
+    name = "+alternates",
+    o = { "<cmd>Other<cr>", "List" },
+    i = { "<cmd>Other implementation<cr>", "Implementation" },
+    t = { "<cmd>Other tests<cr>", "Tests" },
+    s = { "<cmd>Other styles<cr>", "Styles" },
+  },
   t = {
     name = "toggle",
     f = { require("config.lsp.formatting").toggle, "Format on Save" },
@@ -268,7 +275,6 @@ local leader = {
     a = { function() require("harpoon.mark").add_file() end, "Add mark" },
     n = { function() require("harpoon.ui").nav_next() end, "Next" },
     p = { function() require("harpoon.ui").nav_prev() end, "Previous" }
-
   },
   x = {
     name = "+errors",
@@ -289,6 +295,11 @@ local leader = {
     },
     d = { require("persistence").stop, "Stop" },
   },
+  y = {
+    name = "+yank",
+    p = { ":let @+ = expand('%:p')<CR>", "Path" },
+    f = { ":let @+ = expand('%')<CR>", "File Location" },
+  }
   -- Z = {[[<cmd>lua require("zen-mode").reset()<cr>]], "Zen Mode"},
   -- z = {[[<cmd>ZenMode<cr>]], "Zen Mode"},
   -- T = {[[<Plug>PlenaryTestFile]], "Plenary Test"}

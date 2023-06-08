@@ -1,0 +1,66 @@
+#!/bin/bash
+
+PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
+ITEM_DIR="$HOME/.config/sketchybar/items"
+FONT_FACE="JetBrainsMono Nerd Font"
+
+##### Bar Appearance #####
+# https://felixkratz.github.io/SketchyBar/config/bar
+
+bar=(
+	height=32
+	blur_radius=0
+	position=top
+	sticky=on
+	padding_left=23
+	padding_right=23
+	display=main
+	color=0x00000000
+	y_offset=10
+)
+
+sketchybar --bar "${bar[@]}"
+
+defaults=(
+	updates=when_shown
+	background.color=0xff24273a
+	background.padding_left=2
+	background.padding_right=2
+	background.corner_radius=5
+	background.height=24
+	icon.color=0xffffffff
+	icon.font="$FONT_FACE:Bold:17.0"
+	icon.padding_left=8
+	icon.padding_right=7
+	label.font="$FONT_FACE:Bold:14.0"
+	label.color=0xffcad3f5
+	label.padding_left=0
+	label.padding_right=7
+)
+
+sketchybar --default "${defaults[@]}"
+
+# sketchybar	--add	item current_space left \
+#             --set	current_space \
+#                         background.color=0xfff5a97f \
+#                         background.padding_right=5 \
+#                         icon.font="$FONT_FACE:Bold:13.0" \
+#                         icon.color=0xff24273a \
+#                         label.drawing=off \
+#                         script="$PLUGIN_DIR/current_space.sh" \
+#             --subscribe current_space space_change mouse.clicked
+
+# Left
+source "$ITEM_DIR/spaces.sh"
+
+# Center
+source "$ITEM_DIR/front_app.sh"
+
+# Right
+source "$ITEM_DIR/calendar.sh"
+source "$ITEM_DIR/volume.sh"
+source "$ITEM_DIR/battery.sh"
+
+##### Finalizing Setup #####
+sketchybar --update
+sketchybar --trigger space_change

@@ -6,16 +6,34 @@ local function on_attach(client, bufnr)
   require("config.lsp.formatting").setup(client, bufnr)
   require("config.lsp.keys").setup(client, bufnr)
   require("config.lsp.highlighting").setup(client)
+  if client.server_capabilities.documentSymbolProvider then
+    require("nvim-navic").attach(client, bufnr)
+  end
+  -- is this the best way to disable semantic highlighting??
+  client.server_capabilities.semanticTokensProvider = nil
+end
 
-  -- TypeScript specific stuff
-  -- if client.name == "tsserver" then
-  --   -- require("config.lsp.typescript").setup(client)
-  --   client.server_capabilities.document_formatting = false
-  --   client.server_capabilities.document_range_formatting = false
-  -- end
+local function filter(arr, fn)
+  if type(arr) ~= "table" then
+    return arr
+  end
+
+  local filtered = {}
+  for k, v in pairs(arr) do
+    if fn(v, k, arr) then
+      table.insert(filtered, v)
+    end
+  end
+
+  return filtered
+end
+
+local function filterReactDTS(value)
+  return string.match(value.targetUri, "%.d.ts") == nil
 end
 
 local servers = {
+  yamlls = {},
   bashls = {},
   clangd = {},
   cssls = {},
@@ -31,7 +49,7 @@ local servers = {
     },
   },
   html = {},
-  sumneko_lua = {
+  lua_ls = {
     settings = {
       Lua = {
         workspace = {
@@ -73,10 +91,28 @@ local servers = {
     eslint_enable_diagnostics = true,
     eslint_enable_disable_comments = true,
     auto_inlay_hints = false,
+    handlers = {
+      ['textDocument/definition'] = function(err, result, method, ...)
+        if vim.tbl_islist(result) and #result > 1 then
+          local filtered_result = filter(result, filterReactDTS)
+          return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
+        end
+
+        vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
+      end
+    },
   },
-  rust_analyzer = {},
+  rust_analyzer = {
+    checkOnSave = {
+      command = "clippy"
+    }
+  },
   -- graphql = {},
+  smithy_ls = {},
+  gopls = {},
+  pylsp = {},
 }
+
 
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -87,7 +123,7 @@ capabilities.textDocument.foldingRange = {
 }
 
 -- require(".neoconf.json").setup()
-require("neodev").setup()
+-- require("neodev").setup()
 
 local options = {
   on_attach = on_attach,
@@ -97,12 +133,46 @@ local options = {
   },
 }
 -- require("config.lsp.install").setup(servers, options)
-require("lsp_signature").setup()
+vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
+vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+local border = {
+  { "🭽", "FloatBorder" },
+  { "▔",  "FloatBorder" },
+  { "🭾", "FloatBorder" },
+  { "▕",  "FloatBorder" },
+  { "🭿", "FloatBorder" },
+  { "▁",  "FloatBorder" },
+  { "🭼", "FloatBorder" },
+  { "▏",  "FloatBorder" },
+}
+
+-- To instead override globally
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 for server, opts in pairs(servers) do
   opts = vim.tbl_deep_extend("force", {}, options, opts or {})
   if server == "tsserver" then
     require("typescript").setup({ server = opts })
+  elseif server == "rust" or server == "rust_analyzer" then
+    require("rust-tools").setup({
+      tools = {
+        runnables = {
+          use_telescope = true,
+        },
+        inlay_hints = {
+          auto = true,
+          show_parameter_hints = false,
+          parameter_hints_prefix = "",
+          other_hints_prefix = "",
+        },
+      },
+      server = opts
+    })
   else
     require("lspconfig")[server].setup(opts)
   end

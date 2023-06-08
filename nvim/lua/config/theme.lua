@@ -4,7 +4,7 @@
 local tokyonight = require("tokyonight")
 tokyonight.setup({
   style = "moon",
-  -- transparent = true,
+  transparent = false,
   -- hide_inactive_statusline = false,
   sidebars = {
     "qf",
@@ -17,9 +17,9 @@ tokyonight.setup({
     "startuptime",
     "Outline",
   },
-  transparent = false,
   styles = {},
-  on_colors = function() end,
+  on_colors = function()
+  end,
   on_highlights = function(hl, c)
     -- make the current line cursor orange
     hl.CursorLineNr = { fg = c.orange, bold = true }

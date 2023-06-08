@@ -17,12 +17,18 @@ ctrl + alt - l : yabai -m window --swap east
 ctrl + shift + alt - f : yabai -m window --toggle zoom-fullscreen
 
 # space switcher
-ctrl + shift + alt - y : ~/dotfiles/space-switcher.sh space dev
-ctrl + shift + alt - u : ~/dotfiles/space-switcher.sh space web
-ctrl + shift + alt - i : ~/dotfiles/space-switcher.sh space personal
-ctrl + shift + alt - o : ~/dotfiles/space-switcher.sh space media
-ctrl + shift + alt - p : ~/dotfiles/space-switcher.sh space slack
-ctrl + shift + alt - 0x2A : ~/dotfiles/space-switcher.sh space mail
+# ctrl + shift + alt - y : ~/dotfiles/space-switcher.sh space dev
+ctrl + shift + alt - y : yabai -m space --focus dev
+# ctrl + shift + alt - u : ~/dotfiles/space-switcher.sh space web
+ctrl + shift + alt - u : yabai -m space --focus web
+# ctrl + shift + alt - i : ~/dotfiles/space-switcher.sh space personal
+ctrl + shift + alt - i : yabai -m space --focus personal
+# ctrl + shift + alt - o : ~/dotfiles/space-switcher.sh space media
+ctrl + shift + alt - o : yabai -m space --focus media
+# ctrl + shift + alt - p : ~/dotfiles/space-switcher.sh space slack
+ctrl + shift + alt - p : yabai -m space --focus slack
+# ctrl + shift + alt - 0x2A : ~/dotfiles/space-switcher.sh space mail
+ctrl + shift + alt - 0x2A : yabai -m space --focus mail
 
 # window mover
 ctrl + shift + alt + cmd - y : ~/dotfiles/space-switcher.sh window dev

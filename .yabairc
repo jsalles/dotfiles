@@ -19,15 +19,12 @@ yabai -m config split_ratio 0.5
 
 # Labeled spaces
 yabai -m space 1 --label "dev"
-yabai -m space 2 --label "personal"
-yabai -m space 3 --label "web"
+yabai -m space 2 --label "web"
+yabai -m space 3 --label "personal"
 yabai -m space 4 --label "media"
 yabai -m space 5 --label "slack"
 yabai -m space 6 --label "mail"
 
-# Initialize limelight
-killall limelight &>/dev/null
-limelight &>/dev/null &
 
 # Floating windows
 yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
@@ -45,10 +42,24 @@ yabai -m rule --add app="Amazon" manage=off
 
 # Full screen applications
 yabai -m rule --add app="^Slack$" native-fullscreen=on
-yabai -m rule --add app="^Microsoft Outlook$" title="Inbox" native-fullscreen=on
+yabai -m rule --add app="^Outlook$" title="Inbox" native-fullscreen=on
 
 # yabai -m rule --add app=Outlook manage=off
 
 yabai -m config external_bar all:38:0
+
+# window borders
+# yabai -m config \
+#   window_border                 on          \
+#   window_border_width           1           \
+#   active_window_border_color    0xFF88C0D0  \
+#   normal_window_border_color    0x002E3440  \
+#   insert_feedback_color         0xFFA3BE8C
+  
+# opacity
+yabai -m config \
+  window_opacity          off    \
+#   normal_window_opacity   0.95   \
+#   active_window_opacity   1
 
 echo "yabai configuration loaded..."
