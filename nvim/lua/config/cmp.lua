@@ -54,3 +54,17 @@ cmp.setup({
     },
   },
 })
+
+cmp.setup.filetype("markdown", {
+  sources = cmp.config.sources {
+    { name = "buffer", keyword_length = 3 },
+    {
+      name = "path",
+      option = {
+        get_cwd = function(_)
+          return vim.fn.getcwd()
+        end,
+      },
+    },
+  },
+})

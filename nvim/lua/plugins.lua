@@ -22,6 +22,12 @@ return {
   "ray-x/lsp_signature.nvim",
   "b0o/SchemaStore.nvim",
   "jose-elias-alvarez/typescript.nvim",
+  {
+    "jsalles/tsc.nvim",
+    config = function()
+      require('tsc').setup()
+    end
+  },
   "simrat39/rust-tools.nvim",
   {
     "neovim/nvim-lspconfig",
@@ -209,22 +215,106 @@ return {
   --     },
   --   }
   -- },
+  --
+  -- LaTeX
+  "lervag/vimtex",
 
   -- Treesitter
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   run = ":TSUpdate",
+  --   event = "BufReadPost",
+  --   config = function()
+  --     require("config.treesitter")
+  --   end,
+  --   dependencies = {
+  --     "p00f/nvim-ts-rainbow",
+  --     "windwp/nvim-ts-autotag",
+  --     "nvim-treesitter/nvim-treesitter-refactor",
+  --     "nvim-treesitter/playground",
+  --     "nvim-treesitter/nvim-treesitter-textobjects",
+  --   },
+  -- },
   {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    event = "BufReadPost",
-    config = function()
-      require("config.treesitter")
-    end,
+    version = false, -- last release is way too old and doesn't work on Windows
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
-      "p00f/nvim-ts-rainbow",
-      "windwp/nvim-ts-autotag",
-      "nvim-treesitter/nvim-treesitter-refactor",
-      "nvim-treesitter/playground",
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        init = function()
+          -- PERF: no need to load the plugin, if we only need its queries for mini.ai
+          local plugin = require("lazy.core.config").spec.plugins["nvim-treesitter"]
+          local opts = require("lazy.core.plugin").values(plugin, "opts", false)
+          local enabled = false
+          if opts.textobjects then
+            for _, mod in ipairs({ "move", "select", "swap", "lsp_interop" }) do
+              if opts.textobjects[mod] and opts.textobjects[mod].enable then
+                enabled = true
+                break
+              end
+            end
+          end
+          if not enabled then
+            require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
+          end
+        end,
+      },
     },
+    keys = {
+      { "<c-space>", desc = "Increment selection" },
+      { "<bs>",      desc = "Decrement selection", mode = "x" },
+    },
+    ---@type TSConfig
+    opts = {
+      highlight = { enable = true },
+      indent = { enable = true },
+      ensure_installed = {
+        "bash",
+        "c",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "luadoc",
+        "luap",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "yaml",
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
+        },
+      },
+    },
+    ---@param opts TSConfig
+    config = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        ---@type table<string, boolean>
+        local added = {}
+        opts.ensure_installed = vim.tbl_filter(function(lang)
+          if added[lang] then
+            return false
+          end
+          added[lang] = true
+          return true
+        end, opts.ensure_installed)
+      end
+      require("nvim-treesitter.configs").setup(opts)
+    end,
   },
 
   -- Smooth Scrolling
@@ -245,6 +335,71 @@ return {
       require("config.tree")
     end,
   },
+  -- { "MunifTanjim/nui.nvim",  lazy = true },
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   cmd = "Neotree",
+  --   keys = {
+  --     -- {
+  --     --   "<leader>fT",
+  --     --   function()
+  --     --     require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
+  --     --   end,
+  --     --   desc = "Explorer NeoTree (root dir)",
+  --     -- },
+  --     {
+  --       "<leader>ft",
+  --       function()
+  --         require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+  --       end,
+  --       desc = "Explorer NeoTree (cwd)",
+  --     },
+  --   },
+  --   deactivate = function()
+  --     vim.cmd([[Neotree close]])
+  --   end,
+  --   init = function()
+  --     vim.g.neo_tree_remove_legacy_commands = 1
+  --     if vim.fn.argc() == 1 then
+  --       local stat = vim.loop.fs_stat(vim.fn.argv(0))
+  --       if stat and stat.type == "directory" then
+  --         require("neo-tree")
+  --       end
+  --     end
+  --   end,
+  --   opts = {
+  --     filesystem = {
+  --       bind_to_cwd = false,
+  --       follow_current_file = true,
+  --       use_libuv_file_watcher = true,
+  --     },
+  --     window = {
+  --       mappings = {
+  --         ["<space>"] = "none",
+  --         ["<tab>"] = { "toggle_preview", config = { use_float = false } },
+  --       },
+  --     },
+  --     default_component_configs = {
+  --       indent = {
+  --         with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+  --         expander_collapsed = "",
+  --         expander_expanded = "",
+  --         expander_highlight = "NeoTreeExpander",
+  --       },
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     require("neo-tree").setup(opts)
+  --     vim.api.nvim_create_autocmd("TermClose", {
+  --       pattern = "*lazygit",
+  --       callback = function()
+  --         if package.loaded["neo-tree.sources.git_status"] then
+  --           require("neo-tree.sources.git_status").refresh()
+  --         end
+  --       end,
+  --     })
+  --   end,
+  -- },
   {
     "nvim-telescope/telescope.nvim",
     config = function()
@@ -260,6 +415,15 @@ return {
     },
   },
   { "kevinhwang91/nvim-bqf",                       ft = "qf" },
+  {
+    "jsalles/monorepo.nvim",
+    config = function()
+      require("monorepo").setup({
+        -- Your config here!
+      })
+    end,
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  },
 
   -- Git
   {
@@ -302,6 +466,38 @@ return {
   },
 
   -- Look and feel
+  {
+    "epwalsh/obsidian.nvim",
+    lazy = true,
+    event = { "BufReadPre /Users/jvsalles/Personal/Documents/**.md" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {
+      dir = "~/Personal/Documents/", -- no need to call 'vim.fn.expand' here
+      daily_notes = {
+        folder = "dailies",
+      },
+      completion = {
+        nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
+      },
+    },
+    config = function(_, opts)
+      require("obsidian").setup(opts)
+
+      -- Optional, override the 'gf' keymap to utilize Obsidian's search functionality.
+      -- see also: 'follow_url_func' config option above.
+      vim.keymap.set("n", "gf", function()
+        if require("obsidian").util.cursor_on_markdown_link() then
+          return "<cmd>ObsidianFollowLink<CR>"
+        else
+          return "gf"
+        end
+      end, { noremap = false, expr = true })
+    end,
+  },
   {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",

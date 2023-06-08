@@ -9,6 +9,8 @@ local function on_attach(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     require("nvim-navic").attach(client, bufnr)
   end
+  -- is this the best way to disable semantic highlighting??
+  client.server_capabilities.semanticTokensProvider = nil
 end
 
 local function filter(arr, fn)
