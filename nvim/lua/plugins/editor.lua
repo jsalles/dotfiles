@@ -15,7 +15,14 @@ return {
       })
     end
   },
-  "windwp/nvim-spectre",
+  {
+    "windwp/nvim-spectre",
+    cmd = "Spectre",
+    opts = { open_cmd = "noswapfile vnew" },
+    keys = {
+      { "<leader>sr", function() require("spectre").open() end, desc = "Spectre" }
+    }
+  },
   {
     "RRethy/vim-illuminate",
     event = "BufReadPre",

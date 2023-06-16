@@ -1,4 +1,18 @@
 return {
+  {
+    "stevearc/dressing.nvim",
+    lazy = true,
+    init = function()
+      vim.ui.select = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.select(...)
+      end
+      vim.ui.input = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.input(...)
+      end
+    end,
+  },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   {
     "folke/noice.nvim",
@@ -15,19 +29,19 @@ return {
           ["cmp.entry.get_documentation"] = true,
         },
       },
-      routes = {
-        {
-          filter = {
-            event = "msg_show",
-            any = {
-              { find = "%d+L, %d+B" },
-              { find = "; after #%d+" },
-              { find = "; before #%d+" },
-            },
-          },
-          view = "mini",
-        },
-      },
+      -- routes = {
+      --   {
+      --     filter = {
+      --       event = "msg_show",
+      --       any = {
+      --         { find = "%d+L, %d+B" },
+      --         { find = "; after #%d+" },
+      --         { find = "; before #%d+" },
+      --       },
+      --     },
+      --     view = "mini",
+      --   },
+      -- },
       presets = {
         bottom_search = true,
         command_palette = true,
