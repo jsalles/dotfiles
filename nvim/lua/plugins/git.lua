@@ -62,6 +62,7 @@ return {
   },
   {
     "ThePrimeagen/git-worktree.nvim",
+    lazy = true,
     config = function()
       require("telescope").load_extension("git_worktree")
     end
@@ -69,6 +70,7 @@ return {
   "tpope/vim-fugitive",
   {
     "aaronhallaert/ts-advanced-git-search.nvim",
+    lazy = true,
     config = function()
       require("telescope").load_extension("advanced_git_search")
     end,
