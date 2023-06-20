@@ -1,9 +1,7 @@
 return {
   {
-    -- event = "VeryLazy",
     "folke/tokyonight.nvim",
     lazy = false,
-    priority = 999,
     config = function()
       require("config.theme")
     end,

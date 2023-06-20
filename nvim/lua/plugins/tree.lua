@@ -53,6 +53,15 @@ return {
           expander_highlight = "NeoTreeExpander",
         },
       },
+      source_selector = {
+        -- sources = {
+        --   { source = "filesystem" },
+        --   { source = "git_status" },
+        --   { source = "document_symbols" }
+        -- },
+        winbar = true,
+        -- statusline = true
+      },
     },
     config = function(_, opts)
       require("neo-tree").setup(opts)
