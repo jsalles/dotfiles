@@ -24,6 +24,7 @@ return {
     },
     opts = function()
       local cmp = require("cmp")
+      local defaults = require("cmp.config.default")()
       return {
         completion = {
           completeopt = "menu,menuone,noinsert",
@@ -36,7 +37,7 @@ return {
         sources = {
           { name = "nvim_lsp" },
           { name = "luasnip" },
-          { name = "buffer" },
+          { name = "buffer",  keyword_length = 5 },
           { name = "path" },
         },
         mapping = cmp.mapping.preset.insert({
@@ -55,6 +56,7 @@ return {
         formatting = {
           format = require("config.lsp.kind").cmp_format(),
         },
+        sorting = defaults.sorting,
         -- window = {
         --   completion = cmp.config.window.bordered {
         --     border = border("CmpBorder"),

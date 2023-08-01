@@ -10,7 +10,6 @@ return {
   opts = {
     history = true,
     delete_check_events = "TextChanged",
-    update_events = { "TextChanged", "TextChangedI" }
   },
   -- stylua: ignore
   keys = {

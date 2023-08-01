@@ -16,12 +16,22 @@ return {
   "ray-x/lsp_signature.nvim",
   "b0o/SchemaStore.nvim",
   "jose-elias-alvarez/typescript.nvim",
-  {
-    "jsalles/tsc.nvim",
-    config = function()
-      require('tsc').setup()
-    end
-  },
+  -- {
+  --   "jsalles/tsc.nvim",
+  --   config = function()
+  --     require('tsc').setup()
+  --   end
+  -- },
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  --   opts = {
+  --     settings = {
+  --       tsserver_format_options = {},
+  --       tsserver_plugins = { "@typescript-eslint/parser" }
+  --     }
+  --   },
+  -- },
   "simrat39/rust-tools.nvim",
   {
     "j-hui/fidget.nvim",

@@ -153,6 +153,7 @@ local leader = {
     b = { "<Cmd>Telescope git_branches<CR>", "branches" },
     s = { "<Cmd>Telescope git_status<CR>", "status" },
     d = { "<cmd>DiffviewOpen<cr>", "DiffView" },
+    D = { "<cmd>DiffviewOpen origin/mainline..HEAD<cr>", "DiffView to origin/mainline" },
     h = { name = "+hunk" },
     w = {
       name = "+Worktree",
