@@ -20,11 +20,8 @@ end)
 util.nnoremap("<leader>d", '"_d')
 util.vnoremap("<leader>d", '"_d')
 
--- Move to window using the <ctrl> movement keys
--- util.nmap("<left>", "<C-w>h")
--- util.nmap("<down>", "<C-w>j")
--- util.nmap("<up>", "<C-w>k")
--- util.nmap("<right>", "<C-w>l")
+util.nnoremap("H", "^")
+util.nnoremap("L", "$")
 
 -- Resize window using <ctrl> arrow keys
 util.nnoremap("<Up>", ":resize +2<CR>")
