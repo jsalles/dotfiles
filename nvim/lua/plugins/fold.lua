@@ -41,17 +41,19 @@ return {
       vim.o.foldcolumn = '0' -- '0' is not bad
       vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
     end,
     opts = {
-      provider_selector = function()
-        local lspWithOutFolding = { "markdown", "bash", "sh", "bash", "zsh", "css" }
-        if vim.tbl_contains(lspWithOutFolding, ft) then
-          return { "treesitter", "indent" }
-        elseif ft == "html" then
-          return { "indent" } -- lsp & treesitter do not provide folds
-        else
-          return { "lsp", "indent" }
-        end
+      provider_selector = function(ft)
+        return { "treesitter", "indent" }
+        -- local lspWithOutFolding = { "markdown", "bash", "sh", "bash", "zsh", "css" }
+        -- if vim.tbl_contains(lspWithOutFolding, ft) then
+        --   return { "treesitter", "indent" }
+        -- elseif ft == "html" then
+        --   return { "indent" } -- lsp & treesitter do not provide folds
+        -- else
+        --   return { "lsp", "indent" }
+        -- end
       end,
       -- open opening the buffer, close these fold kinds
       -- use `:UfoInspect` to get available fold kinds from the LSP

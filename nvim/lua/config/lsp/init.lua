@@ -108,7 +108,8 @@ local servers = {
   -- graphql = {},
   smithy_ls = {},
   gopls = {},
-  pylsp = {},
+  pyright = {},
+  ruff_lsp = {},
 }
 
 
@@ -135,13 +136,13 @@ vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
 vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
 local border = {
   { "🭽", "FloatBorder" },
-  { "▔",  "FloatBorder" },
+  { "▔", "FloatBorder" },
   { "🭾", "FloatBorder" },
-  { "▕",  "FloatBorder" },
+  { "▕", "FloatBorder" },
   { "🭿", "FloatBorder" },
-  { "▁",  "FloatBorder" },
+  { "▁", "FloatBorder" },
   { "🭼", "FloatBorder" },
-  { "▏",  "FloatBorder" },
+  { "▏", "FloatBorder" },
 }
 
 -- To instead override globally

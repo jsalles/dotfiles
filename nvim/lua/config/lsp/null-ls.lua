@@ -16,6 +16,8 @@ function M.setup(options)
       nls.builtins.formatting.prettierd.with({
         filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
       }),
+      nls.builtins.formatting.ruff,
+      nls.builtins.formatting.black
     },
     on_attach = options.on_attach,
     root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
