@@ -9,8 +9,6 @@ local function on_attach(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     require("nvim-navic").attach(client, bufnr)
   end
-  -- is this the best way to disable semantic highlighting??
-  client.server_capabilities.semanticTokensProvider = nil
 end
 
 local function filter(arr, fn)
@@ -110,7 +108,8 @@ local servers = {
   -- graphql = {},
   smithy_ls = {},
   gopls = {},
-  pylsp = {},
+  pyright = {},
+  ruff_lsp = {},
 }
 
 
@@ -137,13 +136,13 @@ vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
 vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
 local border = {
   { "🭽", "FloatBorder" },
-  { "▔",  "FloatBorder" },
+  { "▔", "FloatBorder" },
   { "🭾", "FloatBorder" },
-  { "▕",  "FloatBorder" },
+  { "▕", "FloatBorder" },
   { "🭿", "FloatBorder" },
-  { "▁",  "FloatBorder" },
+  { "▁", "FloatBorder" },
   { "🭼", "FloatBorder" },
-  { "▏",  "FloatBorder" },
+  { "▏", "FloatBorder" },
 }
 
 -- To instead override globally

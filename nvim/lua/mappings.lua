@@ -20,11 +20,8 @@ end)
 util.nnoremap("<leader>d", '"_d')
 util.vnoremap("<leader>d", '"_d')
 
--- Move to window using the <ctrl> movement keys
--- util.nmap("<left>", "<C-w>h")
--- util.nmap("<down>", "<C-w>j")
--- util.nmap("<up>", "<C-w>k")
--- util.nmap("<right>", "<C-w>l")
+util.nnoremap("H", "^")
+util.nnoremap("L", "$")
 
 -- Resize window using <ctrl> arrow keys
 util.nnoremap("<Up>", ":resize +2<CR>")
@@ -153,6 +150,7 @@ local leader = {
     b = { "<Cmd>Telescope git_branches<CR>", "branches" },
     s = { "<Cmd>Telescope git_status<CR>", "status" },
     d = { "<cmd>DiffviewOpen<cr>", "DiffView" },
+    D = { "<cmd>DiffviewOpen origin/mainline..HEAD<cr>", "DiffView to origin/mainline" },
     h = { name = "+hunk" },
     w = {
       name = "+Worktree",
@@ -205,7 +203,7 @@ local leader = {
   },
   f = {
     name = "+file",
-    t = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
+    -- t = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     n = { "<cmd>enew<cr>", "New File" },
