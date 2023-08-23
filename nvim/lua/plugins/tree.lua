@@ -10,6 +10,7 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     cmd = "Neotree",
+    branch = "v3.x",
     keys = {
       {
         "<leader>ft",
@@ -34,7 +35,9 @@ return {
     opts = {
       filesystem = {
         bind_to_cwd = false,
-        follow_current_file = true,
+        follow_current_file = {
+          enabled = true,
+        },
         use_libuv_file_watcher = true,
       },
       window = {

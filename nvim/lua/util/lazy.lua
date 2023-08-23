@@ -14,7 +14,7 @@ local opts = {
     },
     { import = "plugins" }
   },
-  defaults = { lazy = false },
+  defaults = { lazy = true },
   install = { colorscheme = { "tokyonight" } },
   checker = { enabled = true },
   performance = {
