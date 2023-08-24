@@ -25,9 +25,16 @@ return {
   },
   {
     "RRethy/vim-illuminate",
-    event = "BufReadPre",
-    config = function()
-      vim.g.Illuminate_delay = 1000
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      delay = 200,
+      large_file_cutoff = 2000,
+      large_file_overrides = {
+        providers = { "lsp" },
+      },
+    },
+    config = function(_, opts)
+      require("illuminate").configure(opts)
     end,
   },
   {
@@ -110,9 +117,13 @@ return {
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = "BufReadPost",
-    config = function()
-      require("config.todo")
-    end,
+    opts = {
+      keywords = {
+        TODO = {
+          alt = { "WIP" }
+        }
+      }
+    }
   },
   {
     "rcarriga/nvim-notify",
