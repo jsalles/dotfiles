@@ -5,7 +5,7 @@ require("config.lsp.kind").setup()
 local function on_attach(client, bufnr)
   require("config.lsp.formatting").setup(client, bufnr)
   require("config.lsp.keys").setup(client, bufnr)
-  require("config.lsp.highlighting").setup(client)
+  -- require("config.lsp.highlighting").setup(client)
   if client.server_capabilities.documentSymbolProvider then
     require("nvim-navic").attach(client, bufnr)
   end
@@ -81,6 +81,9 @@ local servers = {
       mode = "all",
     },
     root_dir = require("lspconfig").util.root_pattern(".git", "yarn.lock", "package.json"),
+    -- let vue be formatted by volar
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx",
+      "svelte", "astro" }
   },
   tsserver = {
     enable_import_on_completion = false,
@@ -110,6 +113,7 @@ local servers = {
   gopls = {},
   pyright = {},
   ruff_lsp = {},
+  volar = {},
 }
 
 
