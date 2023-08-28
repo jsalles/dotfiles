@@ -86,7 +86,13 @@ return {
       )
     end,
   },
-
+  {
+    -- highlight parenthesis and brackets of the block I'm in, not only
+    -- when I'm hovering them. matchparen has to be disabled
+    "utilyre/sentiment.nvim",
+    version = "*",
+    event = "VeryLazy", -- keep for lazy loading
+  },
   {
     "andymass/vim-matchup",
     event = "CursorMoved",
