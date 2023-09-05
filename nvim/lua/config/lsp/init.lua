@@ -74,7 +74,7 @@ local servers = {
   },
   eslint = {
     enable = true,
-    format = { enable = true },
+    format = { enable = false },
     lintTask = { enable = true },
     autoFixOnSave = true,
     codeActionsOnSave = {
@@ -180,5 +180,5 @@ for server, opts in pairs(servers) do
     require("lspconfig")[server].setup(opts)
   end
 
-  require("config.lsp.null-ls").setup(options)
+  -- require("config.lsp.null-ls").setup(opts)
 end

@@ -27,7 +27,7 @@ local opts = {
         -- "matchit",
         "matchparen",
         "netrwPlugin",
-        "rplugin",
+        -- "rplugin", -- need it for python-semshi
         "tarPlugin",
         "tohtml",
         "tutor",
