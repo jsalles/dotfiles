@@ -180,5 +180,5 @@ for server, opts in pairs(servers) do
     require("lspconfig")[server].setup(opts)
   end
 
-  -- require("config.lsp.null-ls").setup(opts)
+  require("config.lsp.null-ls").setup(opts)
 end
