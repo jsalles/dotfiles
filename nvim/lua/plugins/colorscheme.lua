@@ -1,11 +1,11 @@
 return {
   {
     "folke/tokyonight.nvim",
-    -- lazy = false,
+    lazy = false,
     priority = 1000,
     opts = {
       style = "moon",
-      transparent = true,
+      -- transparent = true,
       -- hide_inactive_statusline = false,
       sidebars = {
         "qf",
@@ -68,14 +68,14 @@ return {
     },
     config = function(_, opts)
       require("tokyonight").setup(opts)
-      -- vim.cmd.colorscheme("tokyonight")
+      vim.cmd.colorscheme("tokyonight")
     end
   },
 
   -- catppuccin
   {
     "catppuccin/nvim",
-    lazy = false,
+    -- lazy = false,
     name = "catppuccin",
     opts = {
       integrations = {
