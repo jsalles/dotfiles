@@ -14,7 +14,7 @@ function M.setup(options)
       nls.builtins.diagnostics.markdownlint,
       -- nls.builtins.code_actions.gitsigns,
       nls.builtins.formatting.prettierd.with({
-        filetypes = { "markdown", "vue", --[[ "typescript", "typescriptreact"  ]] },
+        filetypes = { "markdown", "vue", "typescript", "typescriptreact" },
       }),
       nls.builtins.formatting.ruff,
       nls.builtins.formatting.black

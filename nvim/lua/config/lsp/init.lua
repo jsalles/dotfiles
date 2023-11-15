@@ -174,7 +174,14 @@ for server, opts in pairs(servers) do
           other_hints_prefix = "",
         },
       },
-      server = opts
+      server = {
+        ["rust-analyzer"] = {
+          -- enable clippy on save
+          checkOnSave = {
+            command = "clippy",
+          },
+        },
+      }
     })
   else
     require("lspconfig")[server].setup(opts)

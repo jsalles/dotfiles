@@ -14,9 +14,10 @@ local opts = {
     },
     { import = "plugins" },
     -- {
-    -- 	"LazyVim/LazyVim",
-    -- 	import = "lazyvim.plugins",
+    --   "LazyVim/LazyVim",
+    --   import = "lazyvim.plugins",
     -- },
+    -- { import = "lazyvim.plugins.extras.lang.rust" }
     -- { import = "lazyvim.plugins.extras.lang.typescript" },
     -- { import = "lazyvim.plugins.extras.formatting.conform" },
     -- { import = "lazyvim.plugins.extras.formatting.prettier" },
