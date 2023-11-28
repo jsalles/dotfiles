@@ -183,7 +183,7 @@ local leader = {
       c = { "<cmd>PackerCompile<cr>", "Compile" },
     },
   },
-  u = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
+  -- u = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
   s = {
     name = "+search",
     g = { "<cmd>Telescope live_grep<cr>", "Grep" },
