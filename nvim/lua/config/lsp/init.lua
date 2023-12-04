@@ -104,9 +104,52 @@ local servers = {
     },
   },
   rust_analyzer = {
-    checkOnSave = {
-      command = "clippy"
-    }
+    -- checkOnSave = {
+    --   command = "clippy"
+    -- }
+    keys = {
+      { "K",          "<cmd>RustHoverActions<cr>", desc = "Hover Actions (Rust)" },
+      { "<leader>cR", "<cmd>RustCodeAction<cr>",   desc = "Code Action (Rust)" },
+      { "<leader>dr", "<cmd>RustDebuggables<cr>",  desc = "Run Debuggables (Rust)" },
+    },
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          allFeatures = true,
+          loadOutDirsFromCheck = true,
+          runBuildScripts = true,
+        },
+        -- Add clippy lints for Rust.
+        checkOnSave = {
+          allFeatures = true,
+          command = "clippy",
+          extraArgs = { "--no-deps" },
+        },
+        procMacro = {
+          enable = true,
+          ignored = {
+            ["async-trait"] = { "async_trait" },
+            ["napi-derive"] = { "napi" },
+            ["async-recursion"] = { "async_recursion" },
+          },
+        },
+      },
+    },
+  },
+  taplo = {
+    keys = {
+      {
+        "K",
+        function()
+          if vim.fn.expand("%:t") == "Cargo.toml" and require("crates").popup_available() then
+            require("crates").show_popup()
+          else
+            vim.lsp.buf.hover()
+          end
+        end,
+        desc = "Show Crate Documentation",
+      },
+    },
   },
   -- graphql = {},
   smithy_ls = {},
@@ -162,27 +205,8 @@ for server, opts in pairs(servers) do
   if server == "tsserver" then
     require("typescript").setup({ server = opts })
   elseif server == "rust" or server == "rust_analyzer" then
-    require("rust-tools").setup({
-      tools = {
-        runnables = {
-          use_telescope = true,
-        },
-        inlay_hints = {
-          auto = true,
-          show_parameter_hints = false,
-          parameter_hints_prefix = "",
-          other_hints_prefix = "",
-        },
-      },
-      server = {
-        ["rust-analyzer"] = {
-          -- enable clippy on save
-          checkOnSave = {
-            command = "clippy",
-          },
-        },
-      }
-    })
+    local rust_tools_opts = require("lazyvim.util").opts("rust-tools.nvim")
+    require("rust-tools").setup(vim.tbl_deep_extend("force", rust_tools_opts or {}, { server = opts }))
   else
     require("lspconfig")[server].setup(opts)
   end
