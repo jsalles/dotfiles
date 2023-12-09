@@ -58,7 +58,7 @@ local servers = {
       offsetEncoding = { "utf-16" },
     },
     cmd = {
-      "/usr/bin/clangd", -- hack to force apple's clang to be used. later I need to detach this from mason-lspconfig
+      "clangd", -- hack to force apple's clang to be used. later I need to detach this from mason-lspconfig
       "--background-index",
       "--clang-tidy",
       "--header-insertion=iwyu",
@@ -241,15 +241,16 @@ end
 
 for server, opts in pairs(servers) do
   opts = vim.tbl_deep_extend("force", {}, options, opts or {})
+  if server == "clangd" then
+    local clangd_ext_opts = require("util").opts("clangd_extensions.nvim")
+    require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
+  end
+
   if server == "tsserver" then
     require("typescript").setup({ server = opts })
   elseif server == "rust" or server == "rust_analyzer" then
     local rust_tools_opts = require("util").opts("rust-tools.nvim")
     require("rust-tools").setup(vim.tbl_deep_extend("force", rust_tools_opts or {}, { server = opts }))
-  elseif server == "clangd" then
-    local clangd_ext_opts = require("util").opts("clangd_extensions.nvim")
-    require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
-    require("lspconfig")[server].setup(opts)
   else
     require("lspconfig")[server].setup(opts)
   end
