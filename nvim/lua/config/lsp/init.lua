@@ -9,6 +9,10 @@ local function on_attach(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     require("nvim-navic").attach(client, bufnr)
   end
+  if client.name == "clangd" then
+    require("clangd_extensions.inlay_hints").setup_autocmd()
+    require("clangd_extensions.inlay_hints").set_inlay_hints()
+  end
 end
 
 local function filter(arr, fn)
@@ -33,7 +37,42 @@ end
 local servers = {
   yamlls = {},
   bashls = {},
-  clangd = {},
+  clangd = {
+    keys = {
+      { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+    },
+    root_dir = function(fname)
+      return require("lspconfig.util").root_pattern(
+        "Makefile",
+        "configure.ac",
+        "configure.in",
+        "config.h.in",
+        "meson.build",
+        "meson_options.txt",
+        "build.ninja"
+      )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
+        fname
+      ) or require("lspconfig.util").find_git_ancestor(fname)
+    end,
+    capabilities = {
+      offsetEncoding = { "utf-16" },
+    },
+    cmd = {
+      "/usr/bin/clangd", -- hack to force apple's clang to be used. later I need to detach this from mason-lspconfig
+      "--background-index",
+      "--clang-tidy",
+      "--header-insertion=iwyu",
+      "--completion-style=detailed",
+      "--function-arg-placeholders",
+      "--fallback-style=llvm",
+      "--query-driver=/usr/bin/clang++"
+    },
+    init_options = {
+      usePlaceholders = true,
+      completeUnimported = true,
+      clangdFileStatus = true,
+    },
+  },
   cssls = {},
   jsonls = {
     settings = {
@@ -205,8 +244,12 @@ for server, opts in pairs(servers) do
   if server == "tsserver" then
     require("typescript").setup({ server = opts })
   elseif server == "rust" or server == "rust_analyzer" then
-    local rust_tools_opts = require("lazyvim.util").opts("rust-tools.nvim")
+    local rust_tools_opts = require("util").opts("rust-tools.nvim")
     require("rust-tools").setup(vim.tbl_deep_extend("force", rust_tools_opts or {}, { server = opts }))
+  elseif server == "clangd" then
+    local clangd_ext_opts = require("util").opts("clangd_extensions.nvim")
+    require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
+    require("lspconfig")[server].setup(opts)
   else
     require("lspconfig")[server].setup(opts)
   end
