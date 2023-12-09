@@ -50,10 +50,10 @@ return {
   --   end,
   --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   -- },
-  -- {
-  --   "ThePrimeagen/harpoon",
-  --   config = function()
-  --     require("telescope").load_extension("harpoon")
-  --   end
-  -- },
+  {
+    "ThePrimeagen/harpoon",
+    config = function()
+      require("telescope").load_extension("harpoon")
+    end
+  },
 }

@@ -45,7 +45,8 @@ yabai -m rule --add app="Amazon" manage=off
 
 # Full screen applications
 yabai -m rule --add app="^Slack$" native-fullscreen=on
-yabai -m rule --add app="^Outlook$" title="Inbox" native-fullscreen=on
+# yabai -m rule --add app="^Microsoft Outlook$" native-fullscreen=on
+yabai -m rule --add app="^Microsoft Outlook$" title="Inbox" native-fullscreen=on
 
 # yabai -m rule --add app=Outlook manage=off
 
