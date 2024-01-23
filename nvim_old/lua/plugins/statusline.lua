@@ -2,7 +2,7 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = function()
-    local icons = require("config").icons
+    local icons = require("config.icons")
     local Util = require("util")
 
     return {
@@ -42,21 +42,21 @@ return {
           {
             function() return require("noice").api.status.command.get() end,
             cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            color = Util.ui.fg("Statement"),
+            color = Util.fg("Statement"),
           },
           -- stylua: ignore
           {
             function() return require("noice").api.status.mode.get() end,
             cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-            color = Util.ui.fg("Constant"),
+            color = Util.fg("Constant"),
           },
           -- stylua: ignore
           {
             function() return "  " .. require("dap").status() end,
             cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
-            color = Util.ui.fg("Debug"),
+            color = Util.fg("Debug"),
           },
-          { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = Util.ui.fg("Special") },
+          { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = Util.fg("Special") },
           {
             "diff",
             symbols = {

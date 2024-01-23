@@ -1,25 +1,10 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    -- config = function()
+    --   require("config.telescope")
+    -- end,
     cmd = "Telescope",
-    keys = {
-      -- files
-      { "<leader>ff", "<cmd>Telescope find_files<cr>",                    desc = "Find files" },
-      { "<leader>fr", "<cmd>Telescope oldfiles<cr>",                      desc = "Open Recent File" },
-      -- search
-      { "<leader>sg", "<cmd>Telescope live_grep<cr>",                     desc = "Grep" },
-      { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>",     desc = "Buffer" },
-      { "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>",          desc = "Goto Symbol" },
-      { "<leader>sh", "<cmd>Telescope command_history<cr>",               desc = "Command History" },
-      { "<leader>sm", "<cmd>Telescope marks<cr>",                         desc = "Jump to Mark" },
-
-      -- navigation
-      { "<leader>.",  "<cmd>Telescope file_browser<CR>",                  desc = "Browse Files" },
-      { "<leader>,",  "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer", },
-      { "<leader>/",  "<cmd>Telescope live_grep<cr>",                     desc = "Search" },
-      { "<leader>:",  "<cmd>Telescope command_history<cr>",               desc = "Command History" },
-
-    },
     version = false,
     dependencies = {
       "nvim-lua/popup.nvim",
@@ -54,5 +39,21 @@ return {
       })
       require("telescope").load_extension("file_browser")
     end,
+  },
+  { "kevinhwang91/nvim-bqf", ft = "qf" },
+  -- {
+  --   "jsalles/monorepo.nvim",
+  --   config = function()
+  --     require("monorepo").setup({
+  --       -- Your config here!
+  --     })
+  --   end,
+  --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  -- },
+  {
+    "ThePrimeagen/harpoon",
+    config = function()
+      require("telescope").load_extension("harpoon")
+    end
   },
 }

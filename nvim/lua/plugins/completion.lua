@@ -1,20 +1,38 @@
-local function border(hl_name)
-  return {
-    { "╭", hl_name },
-    { "─", hl_name },
-    { "╮", hl_name },
-    { "│", hl_name },
-    { "╯", hl_name },
-    { "─", hl_name },
-    { "╰", hl_name },
-    { "│", hl_name },
-  }
-end
-
 return {
+
+  -- snippets
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    },
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+    },
+    -- stylua: ignore
+    keys = {
+      {
+        "<tab>",
+        function()
+          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+        end,
+        expr = true,
+        silent = true,
+        mode = "i",
+      },
+      { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
+      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+    },
+  },
+
+  -- auto completion
   {
     "hrsh7th/nvim-cmp",
-    version = false,
+    version = false, -- last release is way too old
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
@@ -23,6 +41,7 @@ return {
       "saadparwaiz1/cmp_luasnip",
     },
     opts = function()
+      vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
       local cmp = require("cmp")
       local defaults = require("cmp.config.default")()
       return {
@@ -34,41 +53,53 @@ return {
             require("luasnip").lsp_expand(args.body)
           end,
         },
-        sources = {
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "buffer",  keyword_length = 5 },
-          { name = "path" },
-        },
         mapping = cmp.mapping.preset.insert({
-          -- ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-N>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          -- ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-P>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<CR>"] = cmp.mapping.confirm({
+          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<S-CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
-          }),
-          ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
+          }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<C-CR>"] = function(fallback)
+            cmp.abort()
+            fallback()
+          end,
+        }),
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "path" },
+        }, {
+          { name = "buffer" },
         }),
         formatting = {
-          format = require("config.lsp.kind").cmp_format(),
+          format = function(_, item)
+            local icons = require("config").icons.kinds
+            if icons[item.kind] then
+              item.kind = icons[item.kind] .. item.kind
+            end
+            return item
+          end,
+        },
+        experimental = {
+          ghost_text = {
+            hl_group = "CmpGhostText",
+          },
         },
         sorting = defaults.sorting,
-        -- window = {
-        --   completion = cmp.config.window.bordered {
-        --     border = border("CmpBorder"),
-        --     winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-        --   },
-        --   documentation = cmp.config.window.bordered {
-        --     documentation = {
-        --       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        --     },
-        --   },
-        -- },
       }
+    end,
+    ---@param opts cmp.ConfigSchema
+    config = function(_, opts)
+      for _, source in ipairs(opts.sources) do
+        source.group_index = source.group_index or 1
+      end
+      require("cmp").setup(opts)
     end,
   },
 
@@ -86,18 +117,5 @@ return {
       )
     end,
   },
-  {
-    -- highlight parenthesis and brackets of the block I'm in, not only
-    -- when I'm hovering them. matchparen has to be disabled
-    "utilyre/sentiment.nvim",
-    version = "*",
-    event = "VeryLazy", -- keep for lazy loading
-  },
-  {
-    "andymass/vim-matchup",
-    event = "CursorMoved",
-    config = function()
-      vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
-    end,
-  },
-};
+
+}
