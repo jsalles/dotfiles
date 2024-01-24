@@ -1,3 +1,5 @@
+local Util = require("util")
+--
 ---@class Options
 local M = {
   -- colorscheme can be a string like `catppuccin` or a function that will load the colorscheme
@@ -10,63 +12,63 @@ local M = {
       dots = "󰇘",
     },
     dap = {
-      Stopped             = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
-      Breakpoint          = " ",
+      Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
+      Breakpoint = " ",
       BreakpointCondition = " ",
-      BreakpointRejected  = { " ", "DiagnosticError" },
-      LogPoint            = ".>",
+      BreakpointRejected = { " ", "DiagnosticError" },
+      LogPoint = ".>",
     },
     diagnostics = {
       Error = " ",
-      Warn  = " ",
-      Hint  = " ",
-      Info  = " ",
+      Warn = " ",
+      Hint = " ",
+      Info = " ",
     },
     git = {
-      added    = " ",
+      added = " ",
       modified = " ",
-      removed  = " ",
+      removed = " ",
     },
     kinds = {
-      Array         = " ",
-      Boolean       = "󰨙 ",
-      Class         = " ",
-      Codeium       = "󰘦 ",
-      Color         = " ",
-      Control       = " ",
-      Collapsed     = " ",
-      Constant      = "󰏿 ",
-      Constructor   = " ",
-      Copilot       = " ",
-      Enum          = " ",
-      EnumMember    = " ",
-      Event         = " ",
-      Field         = " ",
-      File          = " ",
-      Folder        = " ",
-      Function      = "󰊕 ",
-      Interface     = " ",
-      Key           = " ",
-      Keyword       = " ",
-      Method        = "󰊕 ",
-      Module        = " ",
-      Namespace     = "󰦮 ",
-      Null          = " ",
-      Number        = "󰎠 ",
-      Object        = " ",
-      Operator      = " ",
-      Package       = " ",
-      Property      = " ",
-      Reference     = " ",
-      Snippet       = " ",
-      String        = " ",
-      Struct        = "󰆼 ",
-      TabNine       = "󰏚 ",
-      Text          = " ",
+      Array = " ",
+      Boolean = "󰨙 ",
+      Class = " ",
+      Codeium = "󰘦 ",
+      Color = " ",
+      Control = " ",
+      Collapsed = " ",
+      Constant = "󰏿 ",
+      Constructor = " ",
+      Copilot = " ",
+      Enum = " ",
+      EnumMember = " ",
+      Event = " ",
+      Field = " ",
+      File = " ",
+      Folder = " ",
+      Function = "󰊕 ",
+      Interface = " ",
+      Key = " ",
+      Keyword = " ",
+      Method = "󰊕 ",
+      Module = " ",
+      Namespace = "󰦮 ",
+      Null = " ",
+      Number = "󰎠 ",
+      Object = " ",
+      Operator = " ",
+      Package = " ",
+      Property = " ",
+      Reference = " ",
+      Snippet = " ",
+      String = " ",
+      Struct = "󰆼 ",
+      TabNine = "󰏚 ",
+      Text = " ",
       TypeParameter = " ",
-      Unit          = " ",
-      Value         = " ",
-      Variable      = "󰀫 ",
+      Unit = " ",
+      Value = " ",
+      Variable = "󰀫 ",
     },
   },
   ---@type table<string, string[]|boolean>?
@@ -106,5 +108,40 @@ local M = {
     },
   },
 }
+
+function M.load(name)
+  local function _load(mod)
+    if require("lazy.core.cache").find(mod)[1] then
+      Util.try(function()
+        require(mod)
+      end, { msg = "Failed loading " .. mod })
+    end
+  end
+  _load("config." .. name)
+  local pattern = "InitConfig" .. name:sub(1, 1):upper() .. name:sub(2)
+  vim.api.nvim_exec_autocmds("User", { pattern = pattern, modeline = false })
+end
+
+function M.setup()
+  -- autocmds can be loaded lazily when not opening a file
+  local lazy_autocmds = vim.fn.argc(-1) == 0
+  if not lazy_autocmds then
+    M.load("autocmds")
+  end
+
+  local group = vim.api.nvim_create_augroup("InitConfig", { clear = true })
+  vim.api.nvim_create_autocmd("User", {
+    group = group,
+    pattern = "VeryLazy",
+    callback = function()
+      if lazy_autocmds then
+        M.load("autocmds")
+      end
+      M.load("keymaps")
+    end,
+  })
+
+  M.load("options")
+end
 
 return M

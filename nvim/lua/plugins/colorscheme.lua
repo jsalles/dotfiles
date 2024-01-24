@@ -27,29 +27,28 @@ return {
         variables = {},
         -- Background styles. Can be "dark", "transparent" or "normal"
         sidebars = "dark", -- style for sidebars, see below
-        floats = "dark",   -- style for floating windows
+        floats = "dark", -- style for floating windows
       },
-      on_colors = function()
-      end,
+      on_colors = function() end,
       on_highlights = function(hl, c)
         -- make the current line cursor orange
         hl.CursorLineNr = { fg = c.orange, bold = true }
 
         -- borderless telescope
         local prompt = "#2d3149"
-        hl.TelescopeNormal = { bg = c.bg_dark, fg = c.fg_dark, }
-        hl.TelescopeBorder = { bg = c.bg_dark, fg = c.bg_dark, }
-        hl.TelescopePromptNormal = { bg = prompt, }
-        hl.TelescopePromptBorder = { bg = prompt, fg = prompt, }
-        hl.TelescopePromptTitle = { bg = c.fg_gutter, fg = c.orange, }
-        hl.TelescopePreviewTitle = { bg = c.bg_dark, fg = c.bg_dark, }
-        hl.TelescopeResultsTitle = { bg = c.bg_dark, fg = c.bg_dark, }
-      end
+        hl.TelescopeNormal = { bg = c.bg_dark, fg = c.fg_dark }
+        hl.TelescopeBorder = { bg = c.bg_dark, fg = c.bg_dark }
+        hl.TelescopePromptNormal = { bg = prompt }
+        hl.TelescopePromptBorder = { bg = prompt, fg = prompt }
+        hl.TelescopePromptTitle = { bg = c.fg_gutter, fg = c.orange }
+        hl.TelescopePreviewTitle = { bg = c.bg_dark, fg = c.bg_dark }
+        hl.TelescopeResultsTitle = { bg = c.bg_dark, fg = c.bg_dark }
+      end,
     },
     config = function(_, opts)
       require("tokyonight").setup(opts)
       vim.cmd.colorscheme("tokyonight")
-    end
+    end,
   },
 
   -- catppuccin
@@ -91,7 +90,7 @@ return {
     config = function(_, opts)
       require("catppuccin").setup(opts)
       -- vim.cmd.colorscheme("catppuccin")
-    end
+    end,
   },
 
   -- kanagawa

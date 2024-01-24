@@ -61,7 +61,7 @@ map("n", "<tab>", ":bnext<cr>")
 map("n", "<S-tab>", ":bprevious<cr>")
 
 -- Clear search with <esc>
-map({ "i", "n" }, "<esc>", ":noh<cr><esc>")
+map({ "n" }, "<esc>", ":noh<cr><esc>")
 map("n", "gw", "*N")
 map("x", "gw", "*N")
 
