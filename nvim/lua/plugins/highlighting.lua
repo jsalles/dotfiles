@@ -2,7 +2,7 @@ return {
   {
     -- highlights ( { [ when hovering
     "andymass/vim-matchup",
-    event = "CursorMoved",
+    event = "LazyFile",
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
     end,
@@ -32,9 +32,8 @@ return {
       return {
         highlighters = {
           hex_color = hipatterns.gen_highlighter.hex_color({ priority = 2000 }),
-        }
+        },
       }
     end,
   },
-
 }
