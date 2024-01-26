@@ -19,6 +19,7 @@ require("lazy").setup({
     { import = "plugins" },
     { import = "plugins.lsp.lang.rust" },
     { import = "plugins.lsp.lang.typescript" },
+    { import = "plugins.lsp.lang.json" },
   },
   defaults = {
     lazy = true,
