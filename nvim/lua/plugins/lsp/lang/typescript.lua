@@ -84,11 +84,16 @@ return {
             codeActionsOnSave = {
               mode = "all",
             },
-            filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact",
-              "typescript.tsx"
-            }
-          }
-        }
+            filetypes = {
+              "javascript",
+              "javascriptreact",
+              "javascript.jsx",
+              "typescript",
+              "typescriptreact",
+              "typescript.tsx",
+            },
+          },
+        },
       },
     },
   },
@@ -103,6 +108,13 @@ return {
         javascriptreact = { { "prettierd", "prettier" } },
         typescriptreact = { { "prettierd", "prettier" } },
       },
+    },
+    dependencies = {
+      "williamboman/mason.nvim",
+      opts = function(_, opts)
+        opts.ensure_installed = opts.ensure_installed or {}
+        table.insert(opts.ensure_installed, "prettierd")
+      end,
     },
   },
 
@@ -130,7 +142,7 @@ return {
             -- 💀 Make sure to update this path to point to your installation
             args = {
               require("mason-registry").get_package("js-debug-adapter"):get_install_path()
-              .. "/js-debug/src/dapDebugServer.js",
+                .. "/js-debug/src/dapDebugServer.js",
               "${port}",
             },
           },
