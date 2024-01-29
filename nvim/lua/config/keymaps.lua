@@ -72,3 +72,7 @@ map("o", "n", "'Nn'[v:searchforward]", { expr = true })
 map("n", "N", "'nN'[v:searchforward]", { expr = true })
 map("x", "N", "'nN'[v:searchforward]", { expr = true })
 map("o", "N", "'nN'[v:searchforward]", { expr = true })
+
+map("n", "<leader>gl", function()
+  require("lazy.util").float_term("lazygit")
+end)
