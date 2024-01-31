@@ -16,6 +16,10 @@ map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
+-- better indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+
 -- theprimeagen sessionizer
 map("n", "<C-f>", function()
   os.execute("tmux neww tmux-sessionizer")
@@ -76,3 +80,11 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true })
 map("n", "<leader>gl", function()
   require("lazy.util").float_term("lazygit")
 end)
+
+-- window management
+map("n", "<leader>wd", "<C-W>c", { desc = "delete-window" })
+map("n", "<leader>w-", "<C-W>s", { desc = "split-window-below" })
+map("n", "<leader>w|", "<C-W>v", { desc = "split-window-right" })
+map("n", "<leader>w2", "<C-W>v", { desc = "layout-double-columns" })
+map("n", "<leader>w=", "<C-W>=", { desc = "balance-window" })
+map("n", "<leader>wo", "<cmd>:only<CR>", { desc = "Close other windows" })
