@@ -49,9 +49,9 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
-        rust = { "rustfmt" }
-      }
-    }
+        rust = { "rustfmt" },
+      },
+    },
   },
 
   {
@@ -103,9 +103,9 @@ return {
         -- Ensure mason installs the server
         rust_analyzer = {
           keys = {
-            { "K",          "<cmd>RustHoverActions<cr>", desc = "Hover Actions (Rust)" },
-            { "<leader>cR", "<cmd>RustCodeAction<cr>",   desc = "Code Action (Rust)" },
-            { "<leader>dr", "<cmd>RustDebuggables<cr>",  desc = "Run Debuggables (Rust)" },
+            { "K", "<cmd>RustHoverActions<cr>", desc = "Hover Actions (Rust)" },
+            { "<leader>cR", "<cmd>RustCodeAction<cr>", desc = "Code Action (Rust)" },
+            { "<leader>dr", "<cmd>RustDebuggables<cr>", desc = "Run Debuggables (Rust)" },
           },
           settings = {
             ["rust-analyzer"] = {
