@@ -64,6 +64,12 @@ map("i", ".", "'.<C-g>u'", { expr = true })
 map("n", "<tab>", ":bnext<cr>")
 map("n", "<S-tab>", ":bprevious<cr>")
 
+-- Switch tabs
+map("n", "<leader><tab>n", "<cmd>tabnext<CR>", { desc = "Next" })
+map("n", "<leader><tab>p", "<cmd>tabprevious<CR>", { desc = "Previous" })
+map("n", "<leader><tab>d", "<cmd>tabclose<CR>", { desc = "Close" })
+map("n", "<leader><tab>o", "<cmd>tabonly<CR>", { desc = "Close Others" })
+
 -- Clear search with <esc>
 map({ "n" }, "<esc>", ":noh<cr><esc>")
 map("n", "gw", "*N")

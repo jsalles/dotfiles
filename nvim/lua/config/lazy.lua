@@ -17,9 +17,12 @@ require("config").setup()
 require("lazy").setup({
   spec = {
     { import = "plugins" },
+    -- languages
     { import = "plugins.lsp.lang.rust" },
     { import = "plugins.lsp.lang.typescript" },
     { import = "plugins.lsp.lang.json" },
+    -- extras
+    { import = "plugins.extras.leetcode" },
   },
   defaults = {
     lazy = true,
