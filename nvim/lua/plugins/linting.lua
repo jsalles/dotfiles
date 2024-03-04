@@ -4,12 +4,12 @@ return {
     event = "LazyFile",
     keys = {
       {
-        "<leader>cl",
+        "<leader>cL",
         function()
-          require("lint").try_lint();
+          require("lint").try_lint()
         end,
-        desc = "Lint"
-      }
+        desc = "Lint",
+      },
     },
     opts = {
       -- Event to trigger linters
@@ -22,8 +22,7 @@ return {
         -- ['_'] = { 'fallback linter' },
       },
       ---@type table<string,table>
-      linters = {
-      },
+      linters = {},
     },
     config = function(_, opts)
       local Util = require("util")
