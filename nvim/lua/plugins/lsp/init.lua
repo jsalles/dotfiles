@@ -34,13 +34,15 @@ return {
         enabled = false,
       },
       -- add any global capabilities here
-      capabilities = {},
+      capabilities = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      },
       format = {
         formatting_options = nil,
         timeout_ms = nil,
       },
       -- LSP Server Settings
-      ---@type lspconfig.options
       servers = {
         lua_ls = {
           -- mason = false, -- set to false if you don't want this server to be installed with mason
